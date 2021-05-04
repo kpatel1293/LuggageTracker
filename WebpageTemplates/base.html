@@ -1,0 +1,34 @@
+{% load static %} <!--Need to load static files to access images for img-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luggage Tracker</title> 
+
+    <!--width change size of image, border-radius make edges round, magins to center image-->
+    <style>
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10ch;
+            width: 800px; 
+            border-radius: 40px;
+        }
+    </style>
+
+</head>
+
+<body bgcolor="#FFFFFF">
+    <img src="{% static 'images/Title.png' %}" />
+
+    <!--block used for display content for other html pages that extends this html-->
+    {% block content %}
+
+    
+    {% endblock %}
+</body>
+
+</html>
