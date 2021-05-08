@@ -53,7 +53,8 @@ class Blockchain:
         block.hash = self.proof_of_work(block)
         self.chain.append(block.hash)
         self.transactions.append(block.__dict__)
-        return json.loads(str(block.__dict__).replace('\'','\"'))
+        return json.dumps(str(block.__dict__).replace('\'','\"'))
+        
 
     def getTransactions(self, id):
         labels=['Manufacturer'] 
@@ -70,6 +71,7 @@ class Blockchain:
 
             except Exception as e:
                 print(e)
+
 
 def main():
     manufacturer={
@@ -91,7 +93,7 @@ def main():
     
     B = Blockchain()
     a = B.add(manufacturer)
-    B.getTransactions('all')
+    B.getTransactions(1)
 
 if __name__=='__main__':
     main()
