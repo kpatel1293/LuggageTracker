@@ -30,7 +30,7 @@ class Blockchain:
         return str(self.__dict__)
 
     def genesis_block(self):
-        genesis_block=Block('Genesis', 0x0, [3,4,5,6,7], 'datetime.now().timestamp()', 0)
+        genesis_block=Block('Genesis',0x0,[3,4,5,6,7],'datetime.now().timestamp()',0)
         genesis_block.hash=genesis_block.compute_hash()
         self.chain.append(genesis_block.hash)
         self.transactions.append(str(genesis_block.__dict__))
@@ -53,10 +53,10 @@ class Blockchain:
         block.hash = self.proof_of_work(block)
         self.chain.append(block.hash)
         self.transactions.append(block.__dict__)
-        return json.loads(str(block.__dict__).replace('\'', '\"')) 
+        return json.loads(str(block.__dict__).replace('\'','\"'))
 
     def getTransactions(self, id):
-        labels=['Manufacturer', 'Transportation', 'Retailer'] 
+        labels=['Manufacturer'] 
         while True:
             try:
                 if id == 'all':
@@ -64,7 +64,7 @@ class Blockchain:
                         print('{}:\n{}\n'.format(labels[i],self.transactions[i+1]))
                         break
 
-                elif type(id)==int:
+                elif type(id) == int:
                     print(self.transactions[id])
                     break
 
@@ -76,22 +76,22 @@ def main():
         'transactions':
             [
                 {
-                    'timestamp':datetime.now().timestamp(),
-                    'product_id':1,
-                    'product_serial': 50001000,
-                    'name': 'Kalgi\'s luggage',
-                    'from': 'Airline X',
-                    'to': 'Airline Y',
-                    'message': 'Found at Ohare',
-                    'digital signature': 'approved',
-                    'flagged': 'N'
+                'timestamp': datetime.now().timestamp(),
+                'product_id':1,
+                'product_serial': 50001000,
+                'name': 'Kalgis luggage',
+                'from': 'Airline X',
+                'to': 'Airline Y',
+                'message': 'Found at Ohare',
+                'digital signature': 'approved',
+                'flagged': 'N'
                 }
             ]
-    }
-
-B=Blockchain()
-a=B.add(manufacturer)
-B.getTransactions('all') 
+        }
+    
+    B = Blockchain()
+    a = B.add(manufacturer)
+    B.getTransactions('all')
 
 if __name__=='__main__':
     main()
