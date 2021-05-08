@@ -15,11 +15,11 @@ class luggage:
 #Example
 #this code will be included in "views.py"
 
-#form .models import obj 
+#form .models import luggage 
 
 #def index(request):
-#    object1 = obj() 
-#    object1.name = 'Jack'
+#    object1 = luggage() 
+#    object1.Origin_Airport = 'O'HARE International Airport'
 
 #    dests = [object1, object2]  #this will allow you to pass multiple datas in array form, just change bleow {'dests' : dests}
 
