@@ -9,26 +9,73 @@
 
     <!--width change size of image, border-radius make edges round, magins to center image-->
     <style>
-        img {
+        .buttonAdd {
+            border: none;
+            background-color: white;
+        }
+
+        .imgLogo {
             display: block;
             margin-left: auto;
             margin-right: auto;
             margin-top: 10ch;
-            width: 800px; 
+            margin-bottom: 14ch;
+            width: 500px; 
             border-radius: 40px;
         }
+
+        .imgAdd {
+            width: 35px;
+        }
+
+        p{
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        input[type=text]{
+            width: 30%;
+            border-radius: 40px;
+            padding: 10px 18px;
+        }
+
+        input[type=submit] {
+            width: 5%;
+            background-color: #1FADF9;
+            border-radius: 40px;
+            padding: 8px 16px;
+            
+          }
+
+          .addluggageDIV{
+              border-radius: 5px;
+              background-color: #f2f2f2;
+              padding: 30px;
+              text-align: center;
+              margin-left: 30px;
+              margin-right: 30px;
+          }
     </style>
 
 </head>
 
 <body bgcolor="#FFFFFF">
-    <img src="{% static 'images/Title.png' %}" />
+    
+    <form action="movetoadd">
+        <button class="button buttonAdd" onclick=""> <img class ="img imgAdd" src="{% static 'images/Add.png' %}" />  </button>
+    </form>
+
+    <img class="img imgLogo" src="{% static 'images/Title.png' %}" />
 
     <!--block used for display content for other html pages that extends this html-->
     {% block content %}
 
     
     {% endblock %}
+
+    <footer>
+        <p>Copyright @ 2021 Luggauge Tracker. SE 491. <br>Kalgi, Pawar<br>Chien-Liang, Liu<br>Krishna, Patel<br>Kaitlyn, DePena </p>
+    </footer>
 </body>
 
 </html>
