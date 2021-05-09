@@ -45,8 +45,8 @@ class Blockchain:
         computed_hash = block.compute_hash()
         while not (computed_hash.endswith('0' * difficulty) and ('55' * difficulty) in computed_hash):
             block.nonce += 1
-            computed_hash =  block.compute_hash
-            return computed_hash
+            computed_hash =  block.compute_hash()
+        return computed_hash
 
     def add(self, data):
         block=Block(len(self.chain), self.chain[-1], data, 'datetime.now().timestamp()', 0)
