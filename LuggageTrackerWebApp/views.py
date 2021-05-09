@@ -34,7 +34,7 @@ def search(request):
     Luggage1.Destination = 'John F. Kennedy International Airport (JFK)'
     Luggage1.Current_Location = 'Seattle-Tacoma International Airport (SEA)'
     
-    #Add the luggage objects to array this is dummy data, normal we will be retrieving from database 
+    #Add the luggage objects to array this is dummy data, normally we will be retrieving from database 
     luggages = [Luggage1, Luggage2]
 
     #forloop to find the matching user input Luggage TagID 
