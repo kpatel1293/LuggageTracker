@@ -57,13 +57,13 @@ class Blockchain:
         
 
     def getTransactions(self, id):
-        labels=['Manufacturer'] 
+        labels=['Manufacturer', 'Transportation', 'Retailer'] 
         while True:
             try:
                 if id == 'all':
                     for i in range(len(self.transactions)-1):
                         print('{}:\n{}\n'.format(labels[i],self.transactions[i+1]))
-                        break
+                    break
 
                 elif type(id) == int:
                     print(self.transactions[id])
@@ -90,10 +90,44 @@ def main():
                 }
             ]
         }
+    transportation={
+        'transactions':
+            [
+                {
+                'timestamp': datetime.now().timestamp(),
+                'product_id':1,
+                'product_serial': 50001000,
+                'name': 'Kalgis luggage',
+                'from': 'Airline X',
+                'to': 'Airline Y',
+                'message': 'Found at Ohare',
+                'digital signature': 'approved',
+                'flagged': 'N'
+                }
+            ]
+        }
+    retailer={
+        'transactions':
+            [
+                {
+                'timestamp': datetime.now().timestamp(),
+                'product_id':1,
+                'product_serial': 50001000,
+                'name': 'Kalgis luggage',
+                'from': 'Airline X',
+                'to': 'Airline Y',
+                'message': 'Found at Ohare',
+                'digital signature': 'approved',
+                'flagged': 'N'
+                }
+            ]
+        }
     
     B = Blockchain()
     a = B.add(manufacturer)
-    B.getTransactions(1)
+    b = B.add(transportation)
+    c = B.add(retailer)
+    B.getTransactions('all')
 
 if __name__=='__main__':
     main()
