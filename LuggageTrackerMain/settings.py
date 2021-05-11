@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'LuggageTrackerWebApp.apps.LuggagetrackerwebappConfig',  #need to add this for database 
 ]
 
 MIDDLEWARE = [
@@ -76,11 +77,15 @@ WSGI_APPLICATION = 'LuggageTrackerMain.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql', #you can change the name of the database you are using 
+        #'NAME': BASE_DIR / 'db.sqlite3', #this Django's own database if you want to use it
+        'NAME' : 'luggage_tracker',  #database/schema name that you created on workbench
+        'USER' : 'root', #user name by default is root for MYSQL database 
+        'PASSWORD' : 'SE491Spring', #change this password if you set your own password or none for your database
+        'PORT' : 3306,
+        'HOST' : '127.0.0.1', 
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

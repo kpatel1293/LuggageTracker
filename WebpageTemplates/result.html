@@ -8,21 +8,19 @@
 
 <div class="addluggageDIV">
     
-    <b>Luggage Tag ID : </b> {{LuggageObject.TagID}} <br> <!-- this is dynamic data being sent from search() in "views.py"-->
+    <b>Luggage Tag ID : </b> {{LuggageObject.tag_id}} <br> <!-- this is dynamic data being sent from search() in "views.py"-->
     <br>
-    <b>Luggage Description : </b> {{LuggageObject.Description}} <br>
+    <b>Luggage Description : </b> {{LuggageObject.description}} <br>
     <br>
-    <b> Date : </b> {{LuggageObject.TimeStamp}} <br>
+    <b> Date : </b> {{LuggageObject.time_stamp}} <br>
     <br>
     -------------------------------------------------------------------------- <br>
     <br>
-    <b>Origin Location : </b> {{LuggageObject.Origin_Airport}} <br>
+    <b>Origin Location : </b> {{LuggageObject.origin_airport}} <br>
     <br>
-    <b>Transit Status : </b> {{LuggageObject.InTransit_Status}} <br>
+    <b>Transit Location : </b> {{LuggageObject.transit_airport}} <br>
     <br>
-    <b>Current Location : </b> {{LuggageObject.Current_Location}} <br>
-    <br>
-    <b>Destination Location : </b> {{LuggageObject.Destination}}
+    <b>Destination Location : </b> {{LuggageObject.destination_airport}}
     <br> 
 </div>
 

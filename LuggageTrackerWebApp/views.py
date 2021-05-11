@@ -16,31 +16,43 @@ def search(request):
     Luggage_TagID : str = request.POST["LuggageTagID"] #using POST instead of GET which is more secure 
 
     #needs to retreive luggage information from database, so for now this is dummay data below for demonstration purposes 
-    Luggage1 = luggage()
-    Luggage1.TagID ='ABC12345'
-    Luggage1.Description = 'Samsonite EVOA ICE Blue'
-    Luggage1.TimeStamp = datetime.date.today()
-    Luggage1.Origin_Airport = 'Portland International Airport (PDX)'
-    Luggage1.InTransit_Status = 'Arrived Destination'
-    Luggage1.Destination = 'Chicago O Hare International Airport (ORD)'
-    Luggage1.Current_Location = 'Chicago O Hare International Airport (ORD)'
+    #Luggage1 = luggage()
+    #Luggage1.TagID ='ABC12345'
+    #Luggage1.Description = 'Samsonite EVOA ICE Blue'
+    #Luggage1.TimeStamp = datetime.date.today()
+    #Luggage1.Origin_Airport = 'Portland International Airport (PDX)'
+    #Luggage1.InTransit_Status = 'Arrived Destination'
+    #Luggage1.Destination = 'Chicago O Hare International Airport (ORD)'
+    #Luggage1.Current_Location = 'Chicago O Hare International Airport (ORD)'
 
-    Luggage2 = luggage()
-    Luggage2.TagID = '12345ABC'
-    Luggage1.Description = 'American Tourister LINEX Green'
-    Luggage1.TimeStamp = datetime.date.today()
-    Luggage1.Origin_Airport = 'Los Angeles International Airport (LAX)'
-    Luggage1.InTransit_Status = 'In Transit'
-    Luggage1.Destination = 'John F. Kennedy International Airport (JFK)'
-    Luggage1.Current_Location = 'Seattle-Tacoma International Airport (SEA)'
+    #Luggage2 = luggage()
+    #Luggage2.TagID = '12345ABC'
+    #Luggage1.Description = 'American Tourister LINEX Green'
+    #Luggage1.TimeStamp = datetime.date.today()
+    #Luggage1.Origin_Airport = 'Los Angeles International Airport (LAX)'
+    #Luggage1.InTransit_Status = 'In Transit'
+    #Luggage1.Destination = 'John F. Kennedy International Airport (JFK)'
+    #Luggage1.Current_Location = 'Seattle-Tacoma International Airport (SEA)'
     
     #Add the luggage objects to array this is dummy data, normally we will be retrieving from database 
-    luggages = [Luggage1, Luggage2]
+    #luggages = [Luggage1, Luggage2]
 
     #forloop to find the matching user input Luggage TagID 
+    #foundLuggage : luggage
+    #for L in luggages:
+        #if(Luggage_TagID == L.TagID):
+            #foundLuggage = L
+
+    
+    #instead of using the dummy data above, we will retieve it from database instead, 
+    #the dummy data will be added through the admin webpage for now, we will need to change that into user pushing
+    #the data to the database 
+
+    luggage_Objects = luggage.objects.all()  #gets all luggage objects in database 
+    
     foundLuggage : luggage
-    for L in luggages:
-        if(Luggage_TagID == L.TagID):
+    for L in luggage_Objects:
+        if(Luggage_TagID == L.tag_id):
             foundLuggage = L
 
     return render(request, 'result.html', {'LuggageObject': foundLuggage}) #rendering the webpage, sending the result
@@ -51,7 +63,7 @@ def movetoadd(request):
     return render(request, 'add.html') 
 
 
-#submit, adding new Luggage information 
+#user submit, adding new Luggage information 
 def addLuggage(request):
 
     #need to create Luggage object and append all the data submitted from client, as well as, adding to database and blockchain
