@@ -3,14 +3,13 @@ from django.db import models
 # Create your models here. Create data classes here and objects will be created in "views.py" and passing the object to htmls
 
 #Object Data class 
-class luggage:
-    TagID : str
-    Description : str
-    TimeStamp : str
-    Origin_Airport : str
-    Transit_Airport : str
-    Destination_Airpot : str
-      
+class luggage(models.Model):
+    tag_id = models.IntegerField(default=0)
+    description = models.TextField(blank=True)
+    time_stamp = models.DateTimeField('Time Last Scanned')
+    origin_airport = models.CharField(max_length=120)
+    transit_airport = models.CharField(max_length=120)
+    destination_airport = models.CharField(max_length=120)
 
 #Example
 #this code will be included in "views.py"
