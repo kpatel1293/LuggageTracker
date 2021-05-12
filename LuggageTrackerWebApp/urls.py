@@ -5,7 +5,8 @@ from django.urls import path
 from . import views  
 
 urlpatterns = [ 
-    path('', views.home, name='home'), #home page, the home() function will be define in "views.py", which is called to return something to client
-    path('add/', views.add, name='add'),#add function called when user submits, the function is defined in "views.py"
-    path('', views.display, name='display') #home page, the home() function will be define in "views.py", which is called to return something to client
+    path('', views.home, name='home'), #home() function will be define in "views.py", which is called to return Webpage to client
+    path('search', views.search, name='search'), #search() function called when user submits Luggage Tag ID, function defined in "views.py"
+    path('movetoadd', views.movetoadd, name='movetoadd'), #movetoadd() function called when user clicks on add button on homepage, function defined in "views.py"
+    path('addLuggage', views.addLuggage, name='addLuggage'), #addLuggage() function called when user submits a new luggage, function defined in "views.py"
 ]

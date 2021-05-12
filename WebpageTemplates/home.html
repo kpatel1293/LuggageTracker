@@ -1,27 +1,26 @@
-{% extends 'base.html' %} <!-- Will use the base.html-->
+{% extends 'base.html' %} <!-- inherit base.html-->
 
 <html>
 <head>
-
+    <!--NOTE: Style is inherited from base.html-->
+    <style>
+    </style>
 </head>
 <body>
 
-<!--This will display the block content and using the as well base.html-->
+<!--This will display the block content and using the style from base.html-->
 {% block content %}
 
-<center>
-<p>Enter Luggage Tag ID</p> 
-</center>
-
-<!-- when user clicks on submit it will look for the "add" to the numbers which is in file urls to map the "add"-->
-<!-- method = post means sending data via POST instead of GET more secure so the numbers won't show on the http address-->
-<form action="add" method='post'>  
-
+<!-- when user clicks on submit it will look for and execute the "search" function which is in file urls to map the "search"-->
+<!-- method = POST means sending data via POST instead of GET more secure so data won't show on the http address bar-->
+<form action="search" method='POST'>
     {% csrf_token %} <!--to be able to use POST instead of GET-->
     
-    Enter 1st number : <input type="text" name="num1"><br>
-    Enter 2nd number : <input tupe="text" name="num2"><br>
+    <!--user input luggage Tag ID with submit button-->
+    <center>
+    <input type="text" name="LuggageTagID" placeholder="Enter Luggage Tag ID" >
     <input type = "submit">
+    </center>
 
 </form>
 

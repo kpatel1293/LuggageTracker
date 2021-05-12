@@ -1,7 +1,27 @@
+<!--this page rendered when user submits luggage tag ID from home.html page-->
+
 {% extends 'base.html' %} <!-- Will use the base.html-->
 
 {% block content %}
 
-Result : {{result}} <!-- this is dynamic data being sent from function add() in "views.py"-->
+<center><h1>Luggage Information</h1> </center>
+
+<div class="addluggageDIV">
+    
+    <b>Luggage Tag ID : </b> {{LuggageObject.tag_id}} <br> <!-- this is dynamic data being sent from search() in "views.py"-->
+    <br>
+    <b>Luggage Description : </b> {{LuggageObject.description}} <br>
+    <br>
+    <b> Date : </b> {{LuggageObject.time_stamp}} <br>
+    <br>
+    -------------------------------------------------------------------------- <br>
+    <br>
+    <b>Origin Location : </b> {{LuggageObject.origin_airport}} <br>
+    <br>
+    <b>Transit Location : </b> {{LuggageObject.transit_airport}} <br>
+    <br>
+    <b>Destination Location : </b> {{LuggageObject.destination_airport}}
+    <br> 
+</div>
 
 {% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %} <!-- inherit base.html-->
+
+
+{% block content %}
+
+<center><h1>Add Luggage</h1></center>
+
+<div class="addluggageDIV">
+    <form action="addLuggage" method="POST">
+        {% csrf_token %} <!--to be able to use POST instead of GET-->
+
+        Luggage Tag ID: <br>
+        <input type="text" name="TagID" placeholder="Enter Luggage Tag ID" ><br>
+        <br>
+        
+        Luggage Description: <br>
+        <input type="text" name="Description" placeholder="Enter Luggage Description Ex. color, size, weight, brand..."><br>
+        <br>
+
+        Person/Department Handling: <br>
+        <input type="text" name="handler" placeholder="Enter position or name or department"><br>
+        <br>
+
+        Current Ariport: <br>
+        <input type="text" name="originAirport" placeholder="Enter Ariport name"><br>
+        <br>
+
+        Destination Ariport: <br>
+        <input type="text" name="desAirport" placeholder="Enter Ariport Destination name"><br>
+        <br>
+
+        <input type = "submit">
+
+    </form>
+</div>
+
+<!--MAYBE ADD a back to HOME PAGE Search-->
+
+{% endblock %}
