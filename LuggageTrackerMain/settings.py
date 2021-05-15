@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-88#c()0t77)3&!ok5%19dtf^3^0yqf64+z*s@!4&f0r2!ubg_1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['luggagetrackerapp.herokuapp.com']
+ALLOWED_HOSTS = ['luggage-tracker.herokuapp.com']
 
 
 # Application definition
