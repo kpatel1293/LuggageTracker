@@ -1,1 +1,1 @@
-web: gunicorn luggagetracker:app
+web: gunicorn luggage-tracker:app
