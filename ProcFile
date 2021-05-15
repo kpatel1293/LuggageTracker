@@ -1,1 +1,1 @@
-web: gunicorn luggagetracker.wsgi
+web: gunicorn luggagetracker:app
