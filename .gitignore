@@ -1,16 +1,4 @@
 
 .vscode/settings.json
-LuggageTrackerWebApp/__pycache__/views.cpython-39.pyc
-LuggageTrackerWebApp/__pycache__/urls.cpython-39.pyc
-LuggageTrackerWebApp/__pycache__/models.cpython-39.pyc
-LuggageTrackerWebApp/__pycache__/apps.cpython-39.pyc
-*.pyc
-LuggageTrackerMain/__pycache__/__init__.cpython-39.pyc
-LuggageTrackerMain/__pycache__/settings.cpython-39.pyc
-LuggageTrackerMain/__pycache__/urls.cpython-39.pyc
-LuggageTrackerMain/__pycache__/wsgi.cpython-39.pyc
-LuggageTrackerWebApp/__pycache__/__init__.cpython-39.pyc
-LuggageTrackerWebApp/__pycache__/urls.cpython-39.pyc
-LuggageTrackerWebApp/__pycache__/views.cpython-39.pyc
-.DS_Store
+
 *.pyc
