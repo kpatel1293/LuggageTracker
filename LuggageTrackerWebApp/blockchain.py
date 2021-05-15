@@ -53,7 +53,7 @@ class Blockchain:
         block.hash = self.proof_of_work(block)
         self.chain.append(block.hash)
         self.transactions.append(block.__dict__)
-        return json.dumps(str(block.__dict__).replace('\'','\"'))
+        return json.loads(str(block.__dict__).replace('\'','\"'))
         
 
     def getTransactions(self, id):
