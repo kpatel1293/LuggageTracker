@@ -1,0 +1,1 @@
+web: gunicorn luggagetracker.wsgi --log-file -
