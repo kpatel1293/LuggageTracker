@@ -1,1 +1,1 @@
-web: gunicorn luggagetrackerwebapp.wsgi --log-file -
+web: gunicorn LuggageTrackerMain.wsgi --log-file -
