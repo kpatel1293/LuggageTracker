@@ -8,13 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luggage Tracker</title> 
 
-    <!--width change size of image, border-radius make edges round, magins to center image-->
+    <!--width change size of image, border-radius make edges round, margins to center image-->
     <style>
+
         .buttonAdd {
             border: none;
             background-color: white;
-        }
 
+        }
         .imgLogo {
             display: block;
             margin-left: auto;
@@ -38,15 +39,21 @@
             width: 30%;
             border-radius: 40px;
             padding: 10px 18px;
+            text-align: center;
         }
 
         input[type=submit] {
-            width: 5%;
+            width: 12%;
             background-color: #1FADF9;
             border-radius: 40px;
-            padding: 8px 16px;
-            
-          }
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 0 auto;
+            cursor: pointer;
+        }
 
           .addluggageDIV{
               border-radius: 5px;
@@ -56,17 +63,57 @@
               margin-left: 30px;
               margin-right: 30px;
           }
+
+          body {
+          margin: 0;
+          }
+
+          ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 25%;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+          }
+
+          li a {
+            display: block;
+            color: #000;
+            padding: 8px 16px;
+            text-decoration: none;
+          }
+
+          li a.active {
+            background-color: #1FADF9;
+            color: white;
+          }
+
+          li a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+          }
     </style>
 
 </head>
 
 <body bgcolor="#FFFFFF">
     
-    <form action="movetoadd">
+    <!--<form action="movetoadd">
         <button class="button buttonAdd" onclick=""> <img class ="img imgAdd" src="{% static 'images/Add.png' %}" />  </button>
-    </form>
+    </form>-->
+    <ul>
+        <li><a class="active" href="">Home</a></li>
+        <li><a href="movetoadd">Add Luggage</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">FAQ</a></li>
+    </ul>
 
-    <img class="img imgLogo" src="{% static 'images/Title.png' %}" />
+    <div style="margin-left:25%;padding:1px 16px;">
+        <img class="img imgLogo" src="{% static 'images/Title.png' %}" />
+    </div>
 
     <!--block used for display content for other html pages that extends this html-->
     {% block content %}
@@ -75,7 +122,10 @@
     {% endblock %}
 
     <footer>
-        <p>Copyright @ 2021 Luggauge Tracker. SE 491. <br>Kalgi, Pawar<br>Chien-Liang, Liu<br>Krishna, Patel<br>Kaitlyn, DePena </p>
+        <div style="margin-left:25%;padding:1px 16px;">
+            <p>Copyright @ 2021 Luggage Tracker. SE 491. <br>Kalgi, Pawar<br>Chien-Liang, Liu<br>Krishna, Patel<br>Kaitlyn, DePena </p>
+        </div>
+
     </footer>
 </body>
 
