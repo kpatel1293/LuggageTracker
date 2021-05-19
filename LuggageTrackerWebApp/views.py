@@ -50,10 +50,15 @@ def search(request):
 
     luggage_Objects = luggage.objects.all()  #gets all luggage objects in database 
     
-    foundLuggage : luggage
+    foundLuggage : luggage = None
     for L in luggage_Objects:
         if(Luggage_TagID == L.tag_id):
             foundLuggage = L
+            break
+    
+    #checking if foundLuggage is None, if it is that means Luggage Tag ID input is not in database or user typed wrong
+    if foundLuggage is None:
+        return render(request, 'notfound.html')
 
     return render(request, 'result.html', {'LuggageObject': foundLuggage}) #rendering the webpage, sending the result
 
@@ -72,3 +77,15 @@ def addLuggage(request):
     #return an array of data, need to send it also 
 
     return render(request, 'addresult.html')
+
+
+#user clicks on login button takes to login.html page 
+def movetologin(request):
+    return render(request, 'login.html')
+
+#user signin 
+def login(request):
+    
+    #code to process sign in 
+
+    return render(request, 'home.html')

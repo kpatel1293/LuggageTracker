@@ -15,6 +15,23 @@
             background-color: white;
         }
 
+        .buttonLogin{
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: white; 
+            color: black; 
+            border: 2px solid #1FADF9;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 40px;
+        }
+
+        .buttonLogin:hover {
+            background-color: #1FADF9;
+            color: white;
+          }
+
         .imgLogo {
             display: block;
             margin-left: auto;
@@ -40,6 +57,12 @@
             padding: 10px 18px;
         }
 
+        input[type=password]{
+            width: 30%;
+            border-radius: 40px;
+            padding: 10px 18px;
+        }
+
         input[type=submit] {
             width: 5%;
             background-color: #1FADF9;
@@ -56,6 +79,40 @@
               margin-left: 30px;
               margin-right: 30px;
           }
+
+          .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+          }
+
+          .container {
+            padding: 16px;
+            text-align: center;
+            background-color: #f2f2f2;
+            margin-left: 200px;
+            margin-right: 200px;
+          }
+
+          img.avatar {
+            width: 20%;
+            border-radius: 50%;
+          }
+
+          .buttonSignIn {
+            background-color: #1FADF9;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 50%;
+            border-radius: 5%;
+          }
+          
+          .buttonSignIn:hover {
+            opacity: 0.8;
+          }
+
     </style>
 
 </head>
@@ -64,6 +121,10 @@
     
     <form action="movetoadd">
         <button class="button buttonAdd" onclick=""> <img class ="img imgAdd" src="{% static 'images/Add.png' %}" />  </button>
+    </form>
+
+    <form action="movetologin">
+        <button class="button buttonLogin">Login</button>
     </form>
 
     <img class="img imgLogo" src="{% static 'images/Title.png' %}" />
