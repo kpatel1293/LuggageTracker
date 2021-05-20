@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import luggage #importing luggage data class 
+from .models import * #importing luggage data class 
 import datetime
 
 # Create your views here. This is include your business logic code to send the data to create the HTML website page 
