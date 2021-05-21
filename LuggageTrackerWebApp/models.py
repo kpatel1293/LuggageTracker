@@ -14,6 +14,18 @@ class luggage(models.Model):
     transit_airport = models.CharField(max_length=150)
     destination_airport = models.CharField(max_length=150)
 
+######################
+    #new added variables accoridng to blockchain class 
+    Luggage_status_choices = (('Arrived', 'Arrived'), ('In Transit', 'In Transit'))
+    status = models.CharField(max_length=20, choices=Luggage_status_choices) #luggage transit status can be either 'Arrived' or 'In Transit'
+
+    Flagged_choices = (('N', 'N'), ('Y', 'Y'))
+    flagged = models.CharField(max_length=1, choices=Flagged_choices) #can be either 'N' or 'Y'
+
+    Digital_Signature_choices = (('Approved', 'Approved'), ('Disapproved', 'Disapproved'), ('Waiting', 'Waiting')) 
+    digital_signature = models.CharField(max_length=20, choices=Digital_Signature_choices) #can be either 'approved' or 'disapproved' or 'waiting'
+######################
+
 class LuggageManager(models.Manager):
     # validate registeration
     def validateRegister(self,form_data):
