@@ -9,4 +9,6 @@ urlpatterns = [
     path('search', views.search, name='search'), #search() function called when user submits Luggage Tag ID, function defined in "views.py"
     path('movetoadd', views.movetoadd, name='movetoadd'), #movetoadd() function called when user clicks on add button on homepage, function defined in "views.py"
     path('addLuggage', views.addLuggage, name='addLuggage'), #addLuggage() function called when user submits a new luggage, function defined in "views.py"
+    path('testLuggage', views.testLuggage, name='testLuggage'),
+    path('create', views.create, name='create')
 ]
