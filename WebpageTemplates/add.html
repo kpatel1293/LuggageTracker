@@ -8,21 +8,25 @@
 <div class="addluggageDIV">
     <form action="addLuggage" method="POST">
         {% csrf_token %} <!--to be able to use POST instead of GET-->
+
+        Luggage Tag ID: <br>
+        <input type="text" name="TagID" placeholder="Enter Luggage Tag ID" ><br>
+        <br>
         
         Luggage Description: <br>
-        <input type="text" name="Description" placeholder="Enter Luggage Description Ex. color, size..."><br>
+        <input type="text" name="Description" placeholder="Enter Luggage Description Ex. color, size, weight, brand..."><br>
         <br>
 
-        Current Airport: <br>
-        <input type="text" name="originAirport" placeholder="Enter Airport name" required><br>
+        Person/Department Handling: <br>
+        <input type="text" name="handler" placeholder="Enter position or name or department"><br>
         <br>
 
-        Destination Airport: <br>
-        <input type="text" name="desAirport" placeholder="Enter Airport Destination name" required><br>
+        Current Ariport: <br>
+        <input type="text" name="originAirport" placeholder="Enter Ariport name"><br>
         <br>
 
-        Transit Airport: <br>
-        <input type="text" name="transitAirport" placeholder="Enter Airport Transit name"><br>
+        Destination Ariport: <br>
+        <input type="text" name="desAirport" placeholder="Enter Ariport Destination name"><br>
         <br>
 
         <input type = "submit">
