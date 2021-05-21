@@ -1,8 +1,11 @@
-from django.shortcuts import render
-from .models import luggage #importing luggage data class 
+from django.shortcuts import render, redirect
+from .models import * #importing luggage data class 
 import datetime
+######################
 import string
 import random
+######################
+from .blockchain_org import *
 
 # Create your views here. This is include your business logic code to send the data to create the HTML website page 
 
@@ -125,4 +128,50 @@ def login(request):
     
     #code to process sign in 
 
+######################
     return render(request, 'home.html')
+######################
+    #return render(request, 'addresult.html')
+
+def testLuggage(request):
+
+    luggageBlock = LuggageBlockchain.objects.all()  #gets all luggage objects in database 
+
+    context = {
+        'luggage' : luggageBlock
+    }
+
+    return render(request, 'testpage.html', context)
+
+def create(request):
+    # validate users
+    valid, result = LuggageBlockchain.objects.validateRegister(request.POST)
+
+    # print(result)
+
+    # luggage = LuggageBlockchain.objects.all()
+
+    # pending = {'transactions':[]}
+    # transit = {'transactions':[]}
+    # arrived = {'transactions':[]}
+    
+    # testBlock = Blockchain()
+    
+    # for l in luggage:
+    #     # di = {"tagID":l.tag_id, "name":l.name, "transit":l.transit}  
+    #     if l.transit == 'T':
+    #         transit['transactions'].append({"tagID":l.tag_id, "name":l.name, "transit":l.transit})
+    #         a = testBlock.add(transit)
+    #     elif l.transit == 'A':
+    #         arrived['transactions'].append({"tagID":l.tag_id, "name":l.name, "transit":l.transit})
+    #         b = testBlock.add(arrived)
+    #     else:
+    #         pending['transactions'].append({"tagID":l.tag_id, "name":l.name, "transit":l.transit})
+    #         c = testBlock.add(pending)
+    
+    # t = testBlock.getTransactions('all')
+
+    # print(t)
+
+    # redirect to user dashboard
+    return redirect('testLuggage')
