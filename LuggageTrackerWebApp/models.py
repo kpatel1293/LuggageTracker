@@ -1,91 +1,128 @@
-from django.db import models
-from django.db.models.fields import TimeField
+from django.shortcuts import render
+from .models import luggage #importing luggage data class 
+import datetime
+import string
+import random
 
-# Create your models here. Create data classes here and objects will be created in "views.py" and passing the object to htmls
+# Create your views here. This is include your business logic code to send the data to create the HTML website page 
 
-#Object Data class
+#the request object is from the client and we will be returning something to client webpage 
+#which the function home() is called in "urls.py"
+def home(request):
+    return render(request, 'home.html') #rendering the webpage home to client
 
-#for migrating data to MYSQL database      
-class luggage(models.Model):
-    tag_id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
-    description = models.TextField(blank=True)
-    time_stamp = models.DateTimeField('Time Last Scanned')
-    origin_airport = models.CharField(max_length=150)
-    transit_airport = models.CharField(max_length=150)
-    destination_airport = models.CharField(max_length=150)
 
-######################
-    #new added variables accoridng to blockchain class 
-    Luggage_status_choices = (('Arrived', 'Arrived'), ('In Transit', 'In Transit'))
-    status = models.CharField(max_length=20, choices=Luggage_status_choices) #luggage transit status can be either 'Arrived' or 'In Transit'
+#search() called when user submits LuggageTagID on home.html page 
+def search(request):
 
-    Flagged_choices = (('N', 'N'), ('Y', 'Y'))
-    flagged = models.CharField(max_length=1, choices=Flagged_choices) #can be either 'N' or 'Y'
+    Luggage_TagID : str = request.POST["LuggageTagID"] #using POST instead of GET which is more secure 
 
-    Digital_Signature_choices = (('Approved', 'Approved'), ('Disapproved', 'Disapproved'), ('Waiting', 'Waiting')) 
-    digital_signature = models.CharField(max_length=20, choices=Digital_Signature_choices) #can be either 'approved' or 'disapproved' or 'waiting'
-######################
+    #needs to retreive luggage information from database, so for now this is dummay data below for demonstration purposes 
+    #Luggage1 = luggage()
+    #Luggage1.TagID ='ABC12345'
+    #Luggage1.Description = 'Samsonite EVOA ICE Blue'
+    #Luggage1.TimeStamp = datetime.date.today()
+    #Luggage1.Origin_Airport = 'Portland International Airport (PDX)'
+    #Luggage1.InTransit_Status = 'Arrived Destination'
+    #Luggage1.Destination = 'Chicago O Hare International Airport (ORD)'
+    #Luggage1.Current_Location = 'Chicago O Hare International Airport (ORD)'
 
-class LuggageManager(models.Manager):
-    # validate registeration
-    def validateRegister(self,form_data):
-        # empty errors list
-        errors = []
-
-        # check if any errors
-        if errors: # if true, display errors
-            return (False, errors)
-
-        # # check if user exists
-        # try:
-        #     check_user = self.get(email=form_data['email'])
-        #     errors.append('User already exists')
-        #     return (False, errors)
-        # # if user does not exist
-        # except:
-
-        name = form_data['name']
-        # hash_pwd = bcrypt.hashpw(pwd.encode(), bcrypt.gensalt())
-
-        # store user to database
-        addLuggage = self.create(name=form_data['name'])
-        
-        return (True, addLuggage.tag_id)
-
-class LuggageBlockchain(models.Model):
+    #Luggage2 = luggage()
+    #Luggage2.TagID = '12345ABC'
+    #Luggage1.Description = 'American Tourister LINEX Green'
+    #Luggage1.TimeStamp = datetime.date.today()
+    #Luggage1.Origin_Airport = 'Los Angeles International Airport (LAX)'
+    #Luggage1.InTransit_Status = 'In Transit'
+    #Luggage1.Destination = 'John F. Kennedy International Airport (JFK)'
+    #Luggage1.Current_Location = 'Seattle-Tacoma International Airport (SEA)'
     
-    # SIGNTURE = (
-    #     ('NA', 'AWAITING SIGNTURE'),
-    #     ('C', 'CHECKED IN'),
-    #     ('IT', 'IN TRANSIT'),
-    #     ('R', 'REACHED DESTINATION'),
-    #     ('M', 'MISSING'),
-    #     ('D', 'DELAYED'),
-    #     ('BC', 'BAGGAGE CLAIM'),
-    #     ('A', 'RETRIVED BY CUSTOMER'),
-    #     ('E', 'CHECK MEMO FOR ERROR')
-    # )
+    #Add the luggage objects to array this is dummy data, normally we will be retrieving from database 
+    #luggages = [Luggage1, Luggage2]
 
-    # FLAG = (('Y', 'YES'), ('N', 'NO'))
-    TYPEOFTRANSIT = (('P', 'PENDING'), ('T', 'TRANSIT'), ('A', 'ARRIVED'))
+    #forloop to find the matching user input Luggage TagID 
+    #foundLuggage : luggage
+    #for L in luggages:
+        #if(Luggage_TagID == L.TagID):
+            #foundLuggage = L
 
-    # ORIGIN = (('ORD', 'CHICAGO/ORD'), ('EWR', 'NEWARK/EWR')) # HARD CODED EXAMPLE FOR TESTING
+    
+    #instead of using the dummy data above, we will retieve it from database instead, 
+    #the dummy data will be added through the admin webpage for now, we will need to change that into user pushing
+    #the data to the database 
 
-    tag_id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
-    # hash_id = models.CharField(null=True, max_length=255, default='AWAITING HASH')
-    # prev_hash_id = models.CharField(null=True, max_length=255, default='AWAITING HASH')
-    # timestamp = models.DateTimeField('Time Last Scanned')
-    # origin_airport = models.CharField(max_length=3, choices=ORIGIN, default='')
-    # destination_airport = models.CharField(max_length=3, choices=ORIGIN, default='')
-    name = models.CharField(max_length=255,default='N/A')
-    transit = models.CharField(max_length=1, choices=TYPEOFTRANSIT, default='P')
-    # memo = models.CharField(max_length=255, default='N/A')
-    # digital_signature = models.CharField(max_length=2, choices=SIGNTURE, default='NA')
-    # flagged = models.CharField(max_length=1, choices=FLAG, default='N')
+    luggage_Objects = luggage.objects.all()  #gets all luggage objects in database 
+    
+    foundLuggage : luggage = None
+    for L in luggage_Objects:
+        if(Luggage_TagID == L.tag_id):
+            foundLuggage = L
+            break
+    
+    #checking if foundLuggage is None, if it is that means Luggage Tag ID input is not in database or user typed wrong
+    if foundLuggage is None:
+        return render(request, 'notfound.html')
 
-    # call luggage manager
-    objects = LuggageManager()
+    return render(request, 'result.html', {'LuggageObject': foundLuggage}) #rendering the webpage, sending the result
 
-    # print user created
-    def __str__(self):
-        return str(self.tag_id)
+
+#add button clicked on homepage takes you to the "add.html" webpage 
+def movetoadd(request):
+    return render(request, 'add.html') 
+
+
+#user submit, adding new Luggage information 
+def addLuggage(request):
+
+    #retrieve user input 
+    Luggage_Description : str = request.POST["Description"]
+    Origin_Airport : str = request.POST["originAirport"]
+    Destination_Airport : str = request.POST["desAirport"]
+    Transit_Airport : str = request.POST["transitAirport"]
+
+    #Auto generate tag ID
+    Tag_ID : str = tagID_generator(); 
+
+    #Date time 
+    Current_DateTime : str = datetime.datetime.now()
+
+    #Status ('Arrived' -> Arrived, 'In Transit' -> In Transit)
+    Luggage_Status : str = 'In Transit'
+
+    #Flagged ('N' -> 'N', 'Y' -> 'Y')
+    Luggage_Flagged : str = 'N'
+
+    #Digital Signature ('Approved' -> Approved, 'Disapproved' -> Disapproved, 'Waiting' -> Waiting)
+    Digital_sig = 'Waiting'
+
+    #Create the new luggage object 
+    Luggage_obj = luggage(
+        tag_id = Tag_ID, 
+        description = Luggage_Description, 
+        time_stamp = Current_DateTime, 
+        origin_airport = Origin_Airport,
+        transit_airport = Transit_Airport,
+        destination_airport = Destination_Airport,
+        status = Luggage_Status,
+        flagged = Luggage_Flagged,
+        digital_signature = Digital_sig
+    )
+
+    #Push the Luggage Object onto the Mysql database 
+    Luggage_obj.save()
+
+    return render(request, 'addresult.html', {'Luggage_Object' : Luggage_obj})
+
+#auto generate Tag ID based on numbers and captial alphabets 
+def tagID_generator(size=20, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
+
+#user clicks on login button takes to login.html page 
+def movetologin(request):
+    return render(request, 'login.html')
+
+#user signin 
+def login(request):
+    
+    #code to process sign in 
+
+    return render(request, 'home.html')

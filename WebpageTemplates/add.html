@@ -2,12 +2,10 @@
 
 
 {% block content %}
-<div style="margin-left:25%;padding:1px 16px">
-    <center><h1>Add Luggage</h1></center>
 
-</div>
+<center><h1>Add Luggage</h1></center>
 
-<div class="addluggageDIV" style="margin-left:25%;padding:1px 16px;" >
+<div class="addluggageDIV">
     <form action="addLuggage" method="POST">
         {% csrf_token %} <!--to be able to use POST instead of GET-->
         
@@ -18,7 +16,7 @@
         Current Airport: <br>
         <input type="text" name="originAirport" placeholder="Enter Airport name" required><br>
         <br>
-      
+
         Destination Airport: <br>
         <input type="text" name="desAirport" placeholder="Enter Airport Destination name" required><br>
         <br>
