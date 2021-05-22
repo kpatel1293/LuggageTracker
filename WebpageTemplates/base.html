@@ -8,13 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luggage Tracker</title> 
 
-    <!--width change size of image, border-radius make edges round, margins to center image-->
+    <!--width change size of image, border-radius make edges round, magins to center image-->
     <style>
-
         .buttonAdd {
             border: none;
             background-color: white;
         }
+
         .buttonLogin{
             position: absolute;
             top: 8px;
@@ -31,6 +31,7 @@
             background-color: #1FADF9;
             color: white;
           }
+
         .imgLogo {
             display: block;
             margin-left: auto;
@@ -54,28 +55,21 @@
             width: 30%;
             border-radius: 40px;
             padding: 10px 18px;
-            text-align: center;
         }
 
         input[type=password]{
             width: 30%;
             border-radius: 40px;
             padding: 10px 18px;
-            text-align: center;
         }
 
         input[type=submit] {
-            width: 12%;
+            width: 5%;
             background-color: #1FADF9;
             border-radius: 40px;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 14px;
-            margin: 0 auto;
-            cursor: pointer;
-        }
+            padding: 8px 16px;
+            
+          }
 
           .addluggageDIV{
               border-radius: 5px;
@@ -86,37 +80,6 @@
               margin-right: 30px;
           }
 
-          body {
-          margin: 0;
-          }
-
-          ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            width: 25%;
-            background-color: #f1f1f1;
-            position: fixed;
-            height: 100%;
-            overflow: auto;
-          }
-
-          li a {
-            display: block;
-            color: #000;
-            padding: 8px 16px;
-            text-decoration: none;
-          }
-
-          li a.active {
-            background-color: #1FADF9;
-            color: white;
-          }
-
-          li a:hover:not(.active) {
-            background-color: #555;
-            color: white;
-          }
           .imgcontainer {
             text-align: center;
             margin: 24px 0 12px 0;
@@ -149,21 +112,16 @@
           .buttonSignIn:hover {
             opacity: 0.8;
           }
+
     </style>
 
 </head>
 
 <body bgcolor="#FFFFFF">
     
-    <!--<form action="movetoadd">
+    <form action="movetoadd">
         <button class="button buttonAdd" onclick=""> <img class ="img imgAdd" src="{% static 'images/Add.png' %}" />  </button>
-    </form>-->
-    <ul>
-        <li><a class="active" href="">Home</a></li>
-        <li><a href="movetoadd">Add Luggage</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#about">FAQ</a></li>
-    </ul>
+    </form>
 
     <form action="movetologin">
         <button class="button buttonLogin">Login</button>
@@ -178,10 +136,7 @@
     {% endblock %}
 
     <footer>
-        <div style="margin-left:25%;padding:1px 16px;">
-            <p>Copyright @ 2021 Luggage Tracker. SE 491. <br>Kalgi, Pawar<br>Chien-Liang, Liu<br>Krishna, Patel<br>Kaitlyn, DePena </p>
-        </div>
-
+        <p>Copyright @ 2021 Luggauge Tracker. SE 491. <br>Kalgi, Pawar<br>Chien-Liang, Liu<br>Krishna, Patel<br>Kaitlyn, DePena </p>
     </footer>
 </body>
 
