@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-88#c()0t77)3&!ok5%19dtf^3^0yqf64+z*s@!4&f0r2!ubg_1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True # MAKE SURE TO CHANGE TO TRUE WHEN RUNNING LOCALLY
+DEBUG = False # MAKE SURE TO CHANGE TO TRUE WHEN RUNNING LOCALLY
 
 ALLOWED_HOSTS = ['luggage-tracker.herokuapp.com']
 
