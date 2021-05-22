@@ -15,12 +15,14 @@
 <!-- method = POST means sending data via POST instead of GET more secure so data won't show on the http address bar-->
 <form action="search" method='POST'>
     {% csrf_token %} <!--to be able to use POST instead of GET-->
-    
+    <div style="margin-left:25%;padding:1px 16px;height:200px;">
     <!--user input luggage Tag ID with submit button-->
-    <center>
-    <input type="text" name="LuggageTagID" placeholder="Enter Luggage Tag ID" >
-    <input type = "submit">
-    </center>
+      <center>
+        <input type="text" name="tag_id" placeholder="Enter Luggage Tag ID" >
+        <input type = "submit">
+      </center>
+    </div>
+
 
 </form>
 

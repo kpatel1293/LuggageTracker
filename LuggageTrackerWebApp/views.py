@@ -1,6 +1,8 @@
-from django.shortcuts import render
-from .models import luggage #importing luggage data class 
+from django.shortcuts import redirect, render
+from .models import * #importing luggage data class 
 import datetime
+import string
+import random
 
 # Create your views here. This is include your business logic code to send the data to create the HTML website page 
 
@@ -10,65 +12,52 @@ def home(request):
     return render(request, 'home.html') #rendering the webpage home to client
 
 
+def result(request, tag_id):
+    lug = luggage.objects.all()
+    for l in lug:
+        if l.tag_id == tag_id:
+            context = {'LuggageObject':l}
+    
+    return render(request, 'result.html', context)
+
 #search() called when user submits LuggageTagID on home.html page 
 def search(request):
 
-    Luggage_TagID : str = request.POST["LuggageTagID"] #using POST instead of GET which is more secure 
-
-    #needs to retreive luggage information from database, so for now this is dummay data below for demonstration purposes 
-    #Luggage1 = luggage()
-    #Luggage1.TagID ='ABC12345'
-    #Luggage1.Description = 'Samsonite EVOA ICE Blue'
-    #Luggage1.TimeStamp = datetime.date.today()
-    #Luggage1.Origin_Airport = 'Portland International Airport (PDX)'
-    #Luggage1.InTransit_Status = 'Arrived Destination'
-    #Luggage1.Destination = 'Chicago O Hare International Airport (ORD)'
-    #Luggage1.Current_Location = 'Chicago O Hare International Airport (ORD)'
-
-    #Luggage2 = luggage()
-    #Luggage2.TagID = '12345ABC'
-    #Luggage1.Description = 'American Tourister LINEX Green'
-    #Luggage1.TimeStamp = datetime.date.today()
-    #Luggage1.Origin_Airport = 'Los Angeles International Airport (LAX)'
-    #Luggage1.InTransit_Status = 'In Transit'
-    #Luggage1.Destination = 'John F. Kennedy International Airport (JFK)'
-    #Luggage1.Current_Location = 'Seattle-Tacoma International Airport (SEA)'
-    
-    #Add the luggage objects to array this is dummy data, normally we will be retrieving from database 
-    #luggages = [Luggage1, Luggage2]
-
-    #forloop to find the matching user input Luggage TagID 
-    #foundLuggage : luggage
-    #for L in luggages:
-        #if(Luggage_TagID == L.TagID):
-            #foundLuggage = L
-
-    
-    #instead of using the dummy data above, we will retieve it from database instead, 
-    #the dummy data will be added through the admin webpage for now, we will need to change that into user pushing
-    #the data to the database 
-
-    luggage_Objects = luggage.objects.all()  #gets all luggage objects in database 
-    
-    foundLuggage : luggage
-    for L in luggage_Objects:
-        if(Luggage_TagID == L.tag_id):
-            foundLuggage = L
-
-    return render(request, 'result.html', {'LuggageObject': foundLuggage}) #rendering the webpage, sending the result
+    # Luggage_TagID : str = request.POST["LuggageTagID"] #using POST instead of GET which is more secure 
+    try:
+        result = luggage.objects.get(tag_id=request.POST["tag_id"])
+        return redirect('result/{}'.format(result))
+    except:
+        return redirect('home')
 
 
 #add button clicked on homepage takes you to the "add.html" webpage 
 def movetoadd(request):
     return render(request, 'add.html') 
 
-
 #user submit, adding new Luggage information 
-def addLuggage(request):
+def addLuggage(request, tag_id):
+    lug = luggage.objects.all()
+    for l in lug:
+        if l.tag_id == tag_id:
+            context = {'LuggageObject':l}
 
-    #need to create Luggage object and append all the data submitted from client, as well as, adding to database and blockchain
-    #maybe auto generate Tag ID????????????????? 
-    #need to store timestamp 
-    #return an array of data, need to send it also 
+    return render(request, 'addresult.html', context)
 
-    return render(request, 'addresult.html')
+def createLuggage(request):
+    try:
+        result = luggage.objects.validateLuggage(request.POST)
+        return redirect('addLuggage/{}'.format(result))
+    except:
+        return redirect('movetoadd')
+
+#user clicks on login button takes to login.html page 
+def movetologin(request):
+    return render(request, 'login.html')
+
+#user signin 
+def login(request):
+    
+    #code to process sign in 
+
+    return render(request, 'home.html')
