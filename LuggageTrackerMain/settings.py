@@ -14,10 +14,10 @@ from pathlib import Path
 import os
 import dj_database_url 
 import django_heroku
+import psycopg2
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -30,6 +30,8 @@ DEBUG = False # MAKE SURE TO CHANGE TO TRUE WHEN RUNNING LOCALLY
 
 ALLOWED_HOSTS = ['luggage-tracker.herokuapp.com']
 
+DATABASE_URL = os.environ['DATABASE_URL']
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 # Application definition
 
@@ -142,6 +144,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
+
+SECURE_HSTS_SECONDS = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_SSL_REDIRECT = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_HSTS_PRELOAD = True
 
 # Activate Django-Heroku.
 django_heroku.settings(locals()) 
