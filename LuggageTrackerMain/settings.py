@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-88#c()0t77)3&!ok5%19dtf^3^0yqf64+z*s@!4&f0r2!ubg_1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False # MAKE SURE TO CHANGE TO TRUE WHEN RUNNING LOCALLY
+DEBUG = True # MAKE SURE TO CHANGE TO TRUE WHEN RUNNING LOCALLY
 
 ALLOWED_HOSTS = ['luggage-tracker.herokuapp.com']
 
@@ -82,7 +82,7 @@ DATABASES = {
         #'NAME': BASE_DIR / 'db.sqlite3', #this Django's own database if you want to use it
         'NAME' : 'luggage_tracker',  #database/schema name that you created on workbench
         'USER' : 'root', #user name by default is root for MYSQL database 
-        'PASSWORD' : 'SE491Spring', #change this password if you set your own password or none for your database
+        'PASSWORD' : 'SE491Spring2021', #change this password if you set your own password or none for your database
         'PORT' : 3306,
         'HOST' : '127.0.0.1', 
     }
