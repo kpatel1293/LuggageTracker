@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import luggage #importing luggage data class 
+from django.shortcuts import redirect, render
+from .models import * #importing luggage data class 
 import datetime
 import string
 import random
@@ -12,109 +12,44 @@ def home(request):
     return render(request, 'home.html') #rendering the webpage home to client
 
 
+def result(request, tag_id):
+    lug = luggage.objects.all()
+    for l in lug:
+        if l.tag_id == tag_id:
+            context = {'LuggageObject':l}
+    
+    return render(request, 'result.html', context)
+
 #search() called when user submits LuggageTagID on home.html page 
 def search(request):
 
-    Luggage_TagID : str = request.POST["LuggageTagID"] #using POST instead of GET which is more secure 
-
-    #needs to retreive luggage information from database, so for now this is dummay data below for demonstration purposes 
-    #Luggage1 = luggage()
-    #Luggage1.TagID ='ABC12345'
-    #Luggage1.Description = 'Samsonite EVOA ICE Blue'
-    #Luggage1.TimeStamp = datetime.date.today()
-    #Luggage1.Origin_Airport = 'Portland International Airport (PDX)'
-    #Luggage1.InTransit_Status = 'Arrived Destination'
-    #Luggage1.Destination = 'Chicago O Hare International Airport (ORD)'
-    #Luggage1.Current_Location = 'Chicago O Hare International Airport (ORD)'
-
-    #Luggage2 = luggage()
-    #Luggage2.TagID = '12345ABC'
-    #Luggage1.Description = 'American Tourister LINEX Green'
-    #Luggage1.TimeStamp = datetime.date.today()
-    #Luggage1.Origin_Airport = 'Los Angeles International Airport (LAX)'
-    #Luggage1.InTransit_Status = 'In Transit'
-    #Luggage1.Destination = 'John F. Kennedy International Airport (JFK)'
-    #Luggage1.Current_Location = 'Seattle-Tacoma International Airport (SEA)'
-    
-    #Add the luggage objects to array this is dummy data, normally we will be retrieving from database 
-    #luggages = [Luggage1, Luggage2]
-
-    #forloop to find the matching user input Luggage TagID 
-    #foundLuggage : luggage
-    #for L in luggages:
-        #if(Luggage_TagID == L.TagID):
-            #foundLuggage = L
-
-    
-    #instead of using the dummy data above, we will retieve it from database instead, 
-    #the dummy data will be added through the admin webpage for now, we will need to change that into user pushing
-    #the data to the database 
-
-    luggage_Objects = luggage.objects.all()  #gets all luggage objects in database 
-    
-    foundLuggage : luggage = None
-    for L in luggage_Objects:
-        if(Luggage_TagID == L.tag_id):
-            foundLuggage = L
-            break
-    
-    #checking if foundLuggage is None, if it is that means Luggage Tag ID input is not in database or user typed wrong
-    if foundLuggage is None:
-        return render(request, 'notfound.html')
-
-    return render(request, 'result.html', {'LuggageObject': foundLuggage}) #rendering the webpage, sending the result
+    # Luggage_TagID : str = request.POST["LuggageTagID"] #using POST instead of GET which is more secure 
+    try:
+        result = luggage.objects.get(tag_id=request.POST["tag_id"])
+        return redirect('result/{}'.format(result))
+    except:
+        return redirect('home')
 
 
 #add button clicked on homepage takes you to the "add.html" webpage 
 def movetoadd(request):
     return render(request, 'add.html') 
 
-
 #user submit, adding new Luggage information 
-def addLuggage(request):
+def addLuggage(request, tag_id):
+    lug = luggage.objects.all()
+    for l in lug:
+        if l.tag_id == tag_id:
+            context = {'LuggageObject':l}
 
-    #retrieve user input 
-    Luggage_Description : str = request.POST["Description"]
-    Origin_Airport : str = request.POST["originAirport"]
-    Destination_Airport : str = request.POST["desAirport"]
-    Transit_Airport : str = request.POST["transitAirport"]
+    return render(request, 'addresult.html', context)
 
-    #Auto generate tag ID
-    Tag_ID : str = tagID_generator(); 
-
-    #Date time 
-    Current_DateTime : str = datetime.datetime.now()
-
-    #Status ('Arrived' -> Arrived, 'In Transit' -> In Transit)
-    Luggage_Status : str = 'In Transit'
-
-    #Flagged ('N' -> 'N', 'Y' -> 'Y')
-    Luggage_Flagged : str = 'N'
-
-    #Digital Signature ('Approved' -> Approved, 'Disapproved' -> Disapproved, 'Waiting' -> Waiting)
-    Digital_sig = 'Waiting'
-
-    #Create the new luggage object 
-    Luggage_obj = luggage(
-        tag_id = Tag_ID, 
-        description = Luggage_Description, 
-        time_stamp = Current_DateTime, 
-        origin_airport = Origin_Airport,
-        transit_airport = Transit_Airport,
-        destination_airport = Destination_Airport,
-        status = Luggage_Status,
-        flagged = Luggage_Flagged,
-        digital_signature = Digital_sig
-    )
-
-    #Push the Luggage Object onto the Mysql database 
-    Luggage_obj.save()
-
-    return render(request, 'addresult.html', {'Luggage_Object' : Luggage_obj})
-
-#auto generate Tag ID based on numbers and captial alphabets 
-def tagID_generator(size=20, chars=string.ascii_uppercase + string.digits):
-    return ''.join(random.choice(chars) for _ in range(size))
+def createLuggage(request):
+    try:
+        result = luggage.objects.validateLuggage(request.POST)
+        return redirect('addLuggage/{}'.format(result))
+    except:
+        return redirect('movetoadd')
 
 #user clicks on login button takes to login.html page 
 def movetologin(request):
