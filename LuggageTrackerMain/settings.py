@@ -16,6 +16,9 @@ import dj_database_url
 import django_heroku
 import psycopg2
 
+DATABASE_URL = os.environ['DATABASE_URL']
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,9 +32,6 @@ SECRET_KEY = 'django-insecure-88#c()0t77)3&!ok5%19dtf^3^0yqf64+z*s@!4&f0r2!ubg_1
 DEBUG = False # MAKE SURE TO CHANGE TO TRUE WHEN RUNNING LOCALLY
 
 ALLOWED_HOSTS = ['luggage-tracker.herokuapp.com']
-
-DATABASE_URL = os.environ['DATABASE_URL']
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 # Application definition
 
@@ -142,8 +142,9 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-prod_db  =  dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
+# prod_db  =  dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(prod_db)
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 SECURE_HSTS_SECONDS = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
