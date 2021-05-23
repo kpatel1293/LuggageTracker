@@ -10,7 +10,7 @@ class LuggageManager(models.Manager):
     # validate registeration
     def validateLuggage(self,form_data):
         # store user to database
-        addLuggage = self.create(description=form_data['description'],time_stamp=datetime.now(),origin_airport=form_data['origin_airport'],transit_airport=form_data['transit_airport'],destination_airport=['destination_airport'])
+        addLuggage = self.create(description=form_data['description'],time_stamp=datetime.now(),origin_airport=form_data['origin_airport'],transit_airport=form_data['transit_airport'],destination_airport=form_data['destination_airport'])
         
         return addLuggage.tag_id
 
