@@ -12,5 +12,7 @@ urlpatterns = [
     path('movetologin', views.movetologin, name='movetologin'), #movetologin() function called when user clicks on login button to take to login in page
     path('login', views.login, name='login'), #login() function called with user signin take back to home page 
     path('result/<int:tag_id>', views.result, name='result'),
-    path('createLuggage', views.createLuggage, name='createLuggage')
+    path('createLuggage', views.createLuggage, name='createLuggage'),
+    path('FAQ', views.faq, name='FAQ'), #FAQ() function called with user signin take back to home page
+    path('movetoadd', views.autocomplete, name='autocomplete'),
 ]

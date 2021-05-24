@@ -3,10 +3,11 @@
 
 {% block content %}
 
-<center><h1>Add Luggage</h1></center>
 
-<div class="addluggageDIV">
-    <form action="createLuggage" method="POST">
+<div class="addluggageDIV" style="margin-left:25%;padding:1px 16px;">
+    <center><h1>Add Luggage</h1></center>
+
+<form action="createLuggage" method="POST">
         {% csrf_token %} <!--to be able to use POST instead of GET-->
         
         Luggage Description: <br>
@@ -22,14 +23,25 @@
         <br>
 
         Transit Airport: <br>
-        <input type="text" name="transit_airport" placeholder="Enter Airport Transit name"><br>
+        <input type="text" name="transit_airport" placeholder="Enter Airport Transit name" id="transit_airport"><br>
         <br>
 
         <input type = "submit">
 
     </form>
 </div>
-
+<!-- jQuery !-->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"> </script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"> </script>
+<script>
+    $(function () {
+        $("#transit_airport").autocomplete({
+            source: '{% url 'autocomplete' %}',
+            minLength: 2
+        });
+    });
+</script>
 <!--MAYBE ADD a back to HOME PAGE Search-->
 
 {% endblock %}
