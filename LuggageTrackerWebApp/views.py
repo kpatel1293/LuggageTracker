@@ -34,11 +34,6 @@ def result(request, tag_id):
 def notfound(request):
     return render(request, 'notfound.html')
 
-# add button clicked on homepage takes you to the "add.html" webpage
-def movetoadd(request):
-    return render(request, 'add.html')
-
-
 #created new luggage from user input and push to database 
 def createLuggage(request):
     try:
