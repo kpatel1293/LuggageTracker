@@ -9,6 +9,18 @@ def home(request):
     return render(request, 'home.html')  # rendering the webpage home to client
 
 
+#search() called when user submits LuggageTagID on home.html page 
+def search(request):
+
+    # Luggage_TagID : str = request.POST["LuggageTagID"] #using POST instead of GET which is more secure 
+    try:
+        result = luggage.objects.get(tag_id=request.POST["tag_id"])
+        return redirect('result/{}'.format(result))
+    except:
+        return redirect('notfound') #when Luggage Tag ID not found 
+
+
+#posting the user search resutls of luggage found from database
 def result(request, tag_id):
     lug = luggage.objects.all()
     for l in lug:
@@ -26,14 +38,16 @@ def search(request):
         return redirect('result/{}'.format(result))
     except:
         return redirect('home')
+# MASTER ----------
+# #for redirects when Luggage Tag ID not found in database 
+# def notfound(request):
+#     return render(request, 'notfound.html')
 
 
 # add button clicked on homepage takes you to the "add.html" webpage
 def movetoadd(request):
     return render(request, 'add.html')
 
-
-# user submit, adding new Luggage information
 def addLuggage(request, tag_id):
     lug = luggage.objects.all()
     for l in lug:
@@ -42,7 +56,6 @@ def addLuggage(request, tag_id):
 
     return render(request, 'addresult.html', context)
 
-
 def createLuggage(request):
     try:
         result = luggage.objects.validateLuggage(request.POST)
@@ -50,11 +63,14 @@ def createLuggage(request):
     except:
         return redirect('movetoadd')
 
+#for redirects when new Luggage add or push fails 
+def addfailed(request):
+    return render(request, 'failedpush.html')
+
 
 # user clicks on login button takes to login.html page
 def movetologin(request):
     return render(request, 'login.html')
-
 
 # user signin
 def login(request):
