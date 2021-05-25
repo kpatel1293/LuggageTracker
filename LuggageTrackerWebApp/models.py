@@ -45,3 +45,12 @@ class luggage(models.Model):
     # print user created
     def __str__(self):
         return str(self.tag_id)
+
+class airport(models.Model):
+    name = models.TextField(blank=True)
+    municipality = models.CharField(max_length=150)
+    iatacode = models.CharField('IATA Code', max_length=10)
+    objects = models.Manager()
+
+    def __str__(self):
+       return str(self.name)
