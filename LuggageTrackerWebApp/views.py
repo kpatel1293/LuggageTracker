@@ -73,7 +73,7 @@ def faq(request):
 def autocomplete(request):
     if 'term' in request.GET:
         qs = airport.objects.filter(name__icontains=request.GET.get('term'))
-        names = []
+        names = list()
         for ap in qs:
             names.append(ap.name)
         # names = [airport.name for ap in qs]
