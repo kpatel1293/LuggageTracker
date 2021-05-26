@@ -3,10 +3,10 @@
  {% extends 'base.html' %} <!-- inherit base.html-->
 
  {% block content %}
-
+<div style="margin-left:25%;padding:1px 16px;">
  <center><h1>New Luggage added to database.</h1></center>
-
- <div class="addluggageDIV">
+</div>
+ <div class="addluggageDIV" style="margin-left:25%;padding:1px 16px;">
      <b>Luggage Tag ID : </b> {{LuggageObject.tag_id}} <br> <!-- this is dynamic data being sent from search() in "views.py"-->
      <br>
      <b>Luggage Description : </b> {{LuggageObject.description}} <br>
