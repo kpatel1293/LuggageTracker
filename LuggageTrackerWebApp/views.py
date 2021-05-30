@@ -41,7 +41,7 @@ def checkBlockchain():
                     'tag_id' : l.tag_id,
                     'description' : l.description, 
                     'origin_airport' : l.origin_airport, 
-                    'transit_airport' : l.transit_airport, 
+                    # 'transit_airport' : l.transit_airport, 
                     'destination_airport' : l.destination_airport,
                     'status' : l.status,
                     'flag' : l.flagged,
@@ -57,7 +57,6 @@ def checkBlockchain():
                 addBlock = Blocks.objects.validateBlockchain(getLast(),l)
 
         print(getChain())
-        # print(editBlock(15))
         return True
 
     return False
@@ -114,7 +113,7 @@ def createLuggage(request):
             'tag_id' : l.tag_id,
             'description' : l.description, 
             'origin_airport' : l.origin_airport, 
-            'transit_airport' : l.transit_airport, 
+            # 'transit_airport' : l.transit_airport, 
             'destination_airport' : l.destination_airport,
             'status' : l.status,
             'flag' : l.flagged,

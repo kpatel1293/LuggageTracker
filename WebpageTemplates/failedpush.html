@@ -1,17 +1,14 @@
 <!--this page for when new luggage push or add fails-->
 
-{% extends 'base.html' %} <!-- inherit base.html-->
+{% extends 'home.html' %} <!-- inherit home.html-->
 
 {% block content %}
-<div style="margin-left:25%;padding:1px 16px;">
-<center><h1>Luggage Not Added</h1></center>
-</div>
-<div class="addluggageDIV" style="margin-left:25%;padding:1px 16px;">
-
-    New Luggage Not added. <br>
-    Error occurred. <br>
-    Please re-enter and add Luggage. <br> 
-
+<div class="container" style="text-align:center;margin-top:10px">
+    <h1>Luggage Not Added</h1>
 </div>
 
+<div class="container" style="text-align:center;margin-top:15px">
+    <p>Due to an Error, Luggage could not be created at this time.</p>
+    <p><b>Please re-enter the luggage and try again</b></p> 
+</div>
 {% endblock %}

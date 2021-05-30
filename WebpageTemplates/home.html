@@ -1,32 +1,218 @@
-{% extends 'base.html' %} <!-- inherit base.html-->
+{% load static %} <!--Need to load static files to access images for img-->
 
-<html>
+<!DOCTYPE html>
+<html lang="en" class="h-100">
 <head>
-    <!--NOTE: Style is inherited from base.html-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+          
+    <title>Luggage Tracker</title>
+    <!--width change size of image, border-radius make edges round, margins to center image-->
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      
+      main > .container {
+        padding: 60px 15px 0;
+      }
+
+      footer {
+        text-align: center;
+      }
+
+      img.avatar {
+        width: 20%;
+        border-radius: 50%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .imgLogo {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 3ch;
+        margin-bottom: 3ch;
+        width: 500px; 
+        border-radius: 40px;
+        padding: 1px 16px;
+      }
+
+      .imgAdd {
+        width: 35px;
+      }
+      .date {
+    font-size: 11px
+}
+
+.divider {
+    height: 0px !important;
+    background-color: blue
+}
+
+.track-line {
+    height: 2px !important;
+    background-color: #1FADF9
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-top: 0px;
+    background-color: #1FADF9;
+    border-radius: 50%;
+    display: inline-block
+}
+
+.big-dot {
+    height: 25px;
+    width: 25px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    background-color: #1FADF9;
+    border-radius: 50%;
+    display: inline-block
+}
+
+.big-dot i {
+    font-size: 12px
+}
+
+.bg-dark {
+background-color: #1FADF9;
+}
+
+.btn-primary {
+  background-color: #1FADF9;
+  border-color: #1FADF9;
+}
+
+.btn-primary:hover {
+  background-color: #1FADF9;
+  border-color: #1FADF9;
+}
+
+.btn-outline-success, .btn-outline-primary {
+color: #1FADF9;
+border-color: #1FADF9;
+}
+
+.btn-outline-success:hover, .btn-outline-primary:hover {
+  color: #fff;
+  background-color: #1FADF9;
+  border-color: #1FADF9;
+}
+.white {
+  color: white;
+  border-color: white;
+}
+
+.white:hover {
+  color: #1FADF9;
+  background-color: #fff;
+  border-color: #fff;
+}
     </style>
-</head>
-<body>
+    <link href="sticky-footer-navbar.css" rel="stylesheet">
 
-<!--This will display the block content and using the style from base.html-->
-{% block content %}
+  </head>
 
-<!-- when user clicks on submit it will look for and execute the "search" function which is in file urls to map the "search"-->
-<!-- method = POST means sending data via POST instead of GET more secure so data won't show on the http address bar-->
-<form action="search" method='POST'>
-    {% csrf_token %} <!--to be able to use POST instead of GET-->
-    <div style="margin-left:25%;padding:1px 16px;height:200px;">
-    <!--user input luggage Tag ID with submit button-->
-      <center>
-        <input type="text" name="tag_id" placeholder="Enter Luggage Tag ID" >
-        <input type = "submit">
-      </center>
+<body class="d-flex flex-column h-100">
+  <header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Luggage Tracker</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/movetoadd">Add Luggage</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">FAQ</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <button class="btn btn-outline-success white" type="submit">Login</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+<!-- Begin page content -->
+  <main class="flex-shrink-0">
+    <div class="container">
+      <img class="img imgLogo" src="{% static 'images/Title.png' %}" />
+
+      <form class="d-flex" style="margin-left:15%;margin-right:15%;margin-bottom:25px" action="/search" method='POST'>
+        {% csrf_token %} <!--to be able to use POST instead of GET-->
+          <input class="form-control me-2" type="text" name="tag_id" placeholder="Enter Luggage Tag ID" aria-label="Search">
+          <input class="btn btn-outline-success" type="submit"></input>
+      </form>
+
+      <!--block used for display content for other html pages that extends this html-->
+      {% block content %}
+
+      
+      {% endblock %}
     </div>
+  </main>
 
+  <footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+      <span class="text-muted footer">Copyright @ 2021 Luggage Tracker. SE 491.</span>
+      <br>
+      <span class="text-muted">Kalgi, Pawar</span>
+      <br>
+      <span class="text-muted">Chien-Liang, Liu</span>
+      <br>
+      <span class="text-muted">Krishna, Patel</span>
+      <br>
+      <span class="text-muted">Kaitlyn, DePena</span>
 
-</form>
+    </div>
+  </footer>
 
-{% endblock %}
+  <script src="../static/assets/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>

@@ -17,7 +17,7 @@ class LuggageManager(models.Manager):
         addLuggage = self.create(
             description=form_data['description'],
             origin_airport=form_data['origin_airport'],
-            transit_airport=form_data['transit_airport'],
+            # transit_airport=form_data['transit_airport'],
             destination_airport=form_data['destination_airport']
         )
         
@@ -25,22 +25,28 @@ class LuggageManager(models.Manager):
 
 #for migrating data to MYSQL database      
 class Luggage(models.Model):
+    STATUS = (
+        ('Checked In', 'Checked In'),
+        ('In Transit', 'In Transit'),
+        ('Arrived At Destination', 'Arrived At Destination'),
+        ('Retrived', 'Retrived')
+    )
+
     tag_id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     description = models.TextField(blank=True)
     time_stamp = models.TimeField('Time Last Scanned', default=timezone.now)
     origin_airport = models.CharField(max_length=150)
-    transit_airport = models.CharField(max_length=150)
+    # transit_airport = models.CharField(max_length=150)
     destination_airport = models.CharField(max_length=150)
 
     #new added variables accoridng to blockchain class 
-    STATUS = (('Arrived', 'Arrived'), ('In Transit', 'In Transit'))
-    status = models.CharField(max_length=20, choices=STATUS, default='n/a') #luggage transit status can be either 'Arrived' or 'In Transit'
+    status = models.CharField(max_length=30, choices=STATUS, default='Checked In') #luggage transit status can be either 'Arrived' or 'In Transit'
 
     FLAG = (('N', 'N'), ('Y', 'Y'))
     flagged = models.CharField(max_length=1, choices=FLAG, default='N') #can be either 'N' or 'Y'
 
-    SIGNTURE = (('Approved', 'Approved'), ('Disapproved', 'Disapproved'), ('Waiting', 'Waiting')) 
-    digital_signature = models.CharField(max_length=20, choices=SIGNTURE, default='Waiting') #can be either 'approved' or 'disapproved' or 'waiting'
+    SIGNTURE = (('Awaiting Signture', 'Awaiting Signture'),('Missing', 'Missing'),('Delayed', 'Delayed'),('Approved', 'Approved'), ('Disapproved', 'Disapproved')) 
+    digital_signature = models.CharField(max_length=50, choices=SIGNTURE, default='Awaiting Signture') #can be either 'approved' or 'disapproved' or 'waiting'
 
     # call luggage manager
     objects = LuggageManager()
