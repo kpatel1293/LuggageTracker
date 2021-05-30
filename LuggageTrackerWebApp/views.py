@@ -15,6 +15,15 @@ def getChain():
 def getLast():
     return getChain()['LuggageBlockchain'][getChain()['length']-1]
 
+def getBlock(index):
+    return getChain()['LuggageBlockchain'][index]
+
+# def editBlock(index):
+#     getChain()['LuggageBlockchain'][index]['transactions'][0]['origin_airport'] = 'test'
+#     print(getChain()['LuggageBlockchain'][index]['transactions'][0]['origin_airport'])
+
+#     return getChain()['LuggageBlockchain'][index]
+
 def checkBlockchain():
     chainLength = bc.getSize()
     try:
@@ -32,7 +41,7 @@ def checkBlockchain():
                     'tag_id' : l.tag_id,
                     'description' : l.description, 
                     'origin_airport' : l.origin_airport, 
-                    'transit_airport' : l.transit_airport, 
+                    # 'transit_airport' : l.transit_airport, 
                     'destination_airport' : l.destination_airport,
                     'status' : l.status,
                     'flag' : l.flagged,
@@ -47,7 +56,7 @@ def checkBlockchain():
             else:
                 addBlock = Blocks.objects.validateBlockchain(getLast(),l)
 
-        # print(getChain())
+        print(getChain())
         return True
 
     return False
@@ -82,7 +91,6 @@ def result(request, tag_id):
 
     return render(request, 'result.html', context)
 
-
 #for redirects when Luggage Tag ID not found in database 
 def notfound(request):
     return render(request, 'notfound.html')
@@ -97,7 +105,7 @@ def createLuggage(request):
             'tag_id' : l.tag_id,
             'description' : l.description, 
             'origin_airport' : l.origin_airport, 
-            'transit_airport' : l.transit_airport, 
+            # 'transit_airport' : l.transit_airport, 
             'destination_airport' : l.destination_airport,
             'status' : l.status,
             'flag' : l.flagged,

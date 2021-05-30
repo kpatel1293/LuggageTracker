@@ -16,5 +16,4 @@ urlpatterns = [
     path('FAQ', views.faq, name='FAQ'), #FAQ() function called with user signin take back to home page
     path('movetoadd', views.autocomplete, name='autocomplete'),
     path('addfailed', views.addfailed, name='addfailed')
-
 ]

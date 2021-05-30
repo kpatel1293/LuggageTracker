@@ -1,31 +1,39 @@
 <!--this page rendered when user submits luggage tag ID from home.html page-->
 
-{% extends 'base.html' %} <!-- Will use the base.html-->
+{% extends 'home.html' %} <!-- Will use the home.html-->
 
 {% block content %}
-
-<center><h1>Luggage Information</h1> </center>
-
-<div class="addluggageDIV">
-    
-    <b>Luggage Hash ID : </b> {{Blockchain.hash_curr}} <br> <!-- this is dynamic data being sent from search() in "views.py"-->
-    <br>
-    <b>Luggage Tag ID : </b> {{LuggageObject.tag_id}} <br> <!-- this is dynamic data being sent from search() in "views.py"-->
-    <br>
-    <b>Luggage Description : </b> {{LuggageObject.description}} <br>
-    <br>
-    <b> Date : </b> {{LuggageObject.time_stamp}} <br>
-    <br>
-    -------------------------------------------------------------------------- <br>
-    <br>
-    <b>Status : </b> {{LuggageObject.status}} <br>
-    <br>
-    <b>Origin Location : </b> {{LuggageObject.origin_airport}} <br>
-    <br>
-    <b>Transit Location : </b> {{LuggageObject.transit_airport}} <br>
-    <br>
-    <b>Destination Location : </b> {{LuggageObject.destination_airport}}
-    <br> 
-</div>
-
+    <div class="container" style="text-align:center;margin-top:10px">
+        <h1 class="display-6" style="margin-bottom:15px;">Luggage Information for Tag ID {{LuggageObject.tag_id}}</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bg-white p-2 border rounded px-3">
+                    <div class="d-flex flex-row justify-content-between align-items-center order">
+                        <div class="d-flex flex-column order-details">
+                            <span>Luggage Hash ID: {{Blockchain.hash_curr}}</span>
+                            <span class="date">Last Update: {{LuggageObject.time_stamp}} | Travel Information: (departure airport) {{LuggageObject.origin_airport}} to (destination airport) {{LuggageObject.destination_airport}} | Luggage Information: {{LuggageObject.description}}</span>
+                        </div>
+                        <div><button class="btn btn-outline-primary btn-sm disabled" type="button">Edit Luggage</button></div>
+                    </div>
+                    <hr class="divider mb-4">
+                    <div class="d-flex flex-row justify-content-between align-items-center align-content-center">
+                        <span class="{% if LuggageObject.status == 'Checked In' %} d-flex justify-content-center align-items-center big-dot {% endif %} dot"></span>
+                        <hr class="flex-fill {% if LuggageObject.status != 'Checked In' %} track-line {% endif %}"><span class="{% if LuggageObject.status == 'In Transit' %} d-flex justify-content-center align-items-center big-dot {% endif %} dot"></span>
+                        <hr class="flex-fill {% if LuggageObject.status != 'In Transit' and LuggageObject.status == 'Retrived' or LuggageObject.status == 'Arrived At Destination' %} track-line {% endif %}"><span class="{% if LuggageObject.status == 'Arrived At Destination' %} d-flex justify-content-center align-items-center big-dot {% endif %} dot"></span>
+                        <hr class="flex-fill {% if LuggageObject.status == 'Retrived' %} track-line {% endif %}"><span class="{% if LuggageObject.status == 'Retrived' %} d-flex justify-content-center align-items-center big-dot {% endif %} dot"></span>
+                    </div>
+                    <div class="d-flex flex-row justify-content-between align-items-center">
+                        <div class="d-flex flex-column align-items-start"><span>Checked In</span><span></span></div>
+                        <div class="d-flex flex-column align-items-center"><span>In Transit</span><span></span></div>
+                        <div class="d-flex flex-column align-items-center"><span>Arrived At Destination</span><span></span></div>
+                        <div class="d-flex flex-column align-items-end"><span>Retrived By Passenger</span><span></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <span style="color: red;"><b>{% if LuggageObject.digital_signature != 'Awaiting Signture' and LuggageObject.digital_signature != 'Approved' %}IMPORTANT MESSAGE: You have a {{LuggageObject.digital_signature}} luggage, Please see an airline agent for more info {% endif %}</b></span>
+    </div>
 {% endblock %}

@@ -1,17 +1,14 @@
 <!--this page for when Luggage Tag ID input Not Found-->
 
-{% extends 'base.html' %} <!-- inherit base.html-->
+{% extends 'home.html' %} <!-- inherit home.html-->
 
 {% block content %}
-<div style="margin-left:25%;padding:1px 16px;">
-<center><h1>Luggage Not Found</h1></center>
-</div>
-<div class="addluggageDIV" style="margin-left:25%;padding:1px 16px;">
+    <div class="container" style="text-align:center;margin-top:10px">
+        <h1>Luggage Not Found</h1>
+    </div>
 
-    Luggage Tag ID not found. <br>
-    Please re-enter correct Luggage Tag ID. <br>
-    Luggage Tag ID is case sensitive. 
-
-</div>
-
+    <div class="container" style="text-align:center;margin-top:15px">
+        <p>Luggage Tag ID not found. Please re-enter correct Luggage Tag ID.</p>
+        <p><b>Note: </b>Luggage Tag ID is case sensitive.</p> 
+    </div>
 {% endblock %}

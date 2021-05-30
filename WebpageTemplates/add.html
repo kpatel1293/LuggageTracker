@@ -1,36 +1,44 @@
-{% extends 'base.html' %} <!-- inherit base.html-->
+{% extends 'home.html' %} <!-- inherit home.html-->
 
 
 {% block content %}
 
-
-<div class="addluggageDIV" style="margin-left:25%;padding:1px 16px;">
-    <center><h1>Add Luggage</h1></center>
-
-<form action="createLuggage" method="POST">
+<div class="d-flex justify-content-center container">
+    <form action="/createLuggage" method="POST">
         {% csrf_token %} <!--to be able to use POST instead of GET-->
 
-        Luggage Description: <br>
-        <input type="text" name="description" placeholder="Enter Luggage Description Ex. color, size..."><br>
-        <br>
+        <h2 style="margin-top:10px;margin-bottom:15px;">Add Luggage Information</h2>
+       
+        <div class="row">
+            <div>
+                <div class="form-group">
+                    <label for="description">Luggage Description:</label>
+                    <input type="text" class="form-control" placeholder="Enter Luggage Description Ex. color, size..." id="description" name="description" required> 
+                </div>
+            </div>
+        </div>
 
-        Current Airport: <br>
-        <input type="text" name="origin_airport" placeholder="Enter Airport name" id="current_airport" required><br>
-        <br>
 
-        Destination Airport: <br>
-        <input type="text" name="destination_airport" placeholder="Enter Airport Destination name" id="destination_airport" required><br>
-        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="origin_airport">Origin Airport:</label>
+                    <input type="text" class="form-control" placeholder="Enter Airport Name" id="origin_airport" name="origin_airport" required> 
+                </div>
+            </div>
 
-        Transit Airport: <br>
-        <input type="text" name="transit_airport" placeholder="Enter Airport Transit name" id="transit_airport" required><br>
-        <br>
-
-        <input type = "submit">
-
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="destination_airport">Destination Airport:</label>
+                    <input type="text" class="form-control" placeholder="Enter Airport Name" id="destination_airport" name="destination_airport" required>
+                </div>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
 </div>
+
 <!-- jQuery !-->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"> </script>
@@ -43,12 +51,12 @@
             minLength: 2
         });
     });
-    $(function () {
+    {% comment %} $(function () {
         $("#transit_airport").autocomplete({
             source: '{% url 'autocomplete' %}',
             minLength: 2
         });
-    });
+    }); {% endcomment %}
         $(function () {
         $("#destination_airport").autocomplete({
             source: '{% url 'autocomplete' %}',
