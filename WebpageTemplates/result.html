@@ -34,6 +34,6 @@
             </div>
         </div>
         
-        <span style="color: red;"><b>{% if LuggageObject.digital_signature == 'Awaiting Signture' and LuggageObject.digital_signature != 'Approved' %}IMPORTANT MESSAGE: You have a {{LuggageObject.digital_signature}} luggage, Please see an airline agent for more info {% endif %}</b></span>
+        <span style="color: red;"><b>{% if LuggageObject.digital_signature != 'Awaiting Signture' and LuggageObject.digital_signature != 'Approved' %}IMPORTANT MESSAGE: You have a {{LuggageObject.digital_signature}} luggage, Please see an airline agent for more info {% endif %}</b></span>
     </div>
 {% endblock %}
