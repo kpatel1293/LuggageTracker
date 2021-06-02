@@ -144,8 +144,10 @@ def login(request):
     return render(request, 'home.html')
 
 def faq(request):
-    return render(request, 'FAQ.html')  # rendering the webpage home to client
+    return render(request, 'FAQ.html')
 
+def contact(request):
+    return render(request, 'contact.html')
 
 def autocomplete(request):
     if 'term' in request.GET:

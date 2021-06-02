@@ -23,7 +23,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="origin_airport">Origin Airport:</label>
-                    <input type="text" class="form-control" placeholder="Enter Airport Name" id="origin_airport" name="origin_airport" required> 
+                    <input type="text" class="form-control" placeholder="Enter Airport Name" id="origin_airport" name="origin_airport" required>
                 </div>
             </div>
 
@@ -46,7 +46,7 @@
 
 <script>
     $(function () {
-        $("#current_airport").autocomplete({
+        $("#origin_airport").autocomplete({
             source: '{% url 'autocomplete' %}',
             minLength: 2
         });

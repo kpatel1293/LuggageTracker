@@ -141,6 +141,10 @@ border-color: #1FADF9;
   border-color: #fff;
 }
 
+.navbar {
+  height: 65px;
+}
+
 .btn-outline-success:not(:disabled):not(.disabled):active {
   color: #fff;
   background-color: #1FADF9;
@@ -169,10 +173,10 @@ border-color: #1FADF9;
               <a class="nav-link" href="/movetoadd">Add Luggage</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="/contact">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">FAQ</a>
+              <a class="nav-link" href="/FAQ">FAQ</a>
             </li>
           </ul>
           <form class="d-flex">
@@ -191,7 +195,7 @@ border-color: #1FADF9;
       <form class="d-flex" style="margin-left:15%;margin-right:15%;margin-bottom:25px" action="/search" method='POST'>
         {% csrf_token %} <!--to be able to use POST instead of GET-->
           <input class="form-control me-2" type="text" name="tag_id" placeholder="Enter Luggage Tag ID" aria-label="Search">
-          <input class="btn btn-outline-success" type="submit"></input>
+          <input class="btn btn-outline-success" type="submit" </input>
       </form>
 
       <!--block used for display content for other html pages that extends this html-->
