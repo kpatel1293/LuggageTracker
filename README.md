@@ -5,5 +5,5 @@
 heroku run python manage.py makemigrations
 heroku run python manage.py migrate
 
--Run unit all tests:
+-Run all unit tests:
 python3 manage.py test LuggageTrackerWebApp

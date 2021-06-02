@@ -61,14 +61,27 @@ class Test_Luggage(TestCase):
         DigitalSig_label = testObject._meta.get_field('digital_signature').verbose_name
         self.assertEquals(DigitalSig_label, 'digital signature')
 
-#Problems with testing Blocks 
+#Problems with testing blocks 
 #class TestBlocks(TestCase):
 
     #@classmethod
     #def setUpTestData(cls):
+        #test_Luggage = Luggage.objects.create(
+            #tag_id is auto created
+            #description = 'Samsonite Red ASTELL',
+            #time_stamp = datetime.datetime.now(),
+            #origin_airport = 'Chicago O Hare International Airport (ORD)',
+            #destination_airport = 'Seattle-Tacoma International Airport (SEA)'
+            #status = 'Checked In',         #using default instead 
+            #flagged = 'N',         #using default instead 
+            #digital_signature = 'Awaiting Signture'    #using default instead 
+        #)
+
+        #testObject = Luggage.objects.get(tag_id=1)
+
         #Blocks.objects.create(
             #index = 1,
-            #transactions = Luggage().save(),
+            #transactions = Blocks(test_Luggage),
             #timestamp = 1252362.241,
             #prevHash = '12ewkfngwejgwekg9239',
             #nonce = 50,
@@ -88,7 +101,7 @@ class Test_Airport(TestCase):
         Airport.objects.create(
             name = 'Chicago O Hare International Airport (ORD)',
             municipality = 'general',
-            iatacode = 'EVA'
+            iatacode = 'ORD'
         )
     
     def test_name(self):
@@ -101,8 +114,8 @@ class Test_Airport(TestCase):
         municipality_label = testObject._meta.get_field('municipality').verbose_name
         self.assertEquals(municipality_label, 'municipality')
     
-    #Didn't pass test
-    #def test_iatacode(self):
-        #testObject = Airport.objects.get()
-        #iatacode_label = testObject._meta.get_field('iatacode').verbose_name
-        #self.assertEquals(iatacode_label, 'iatacode')
+    def test_iatacode(self):
+        testObject = Airport.objects.get()
+        iatacode_label = testObject._meta.get_field('iatacode').verbose_name
+        self.assertEquals(iatacode_label, 'IATA Code')
+    
