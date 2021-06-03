@@ -14,6 +14,7 @@ urlpatterns = [
     path('result/<int:tag_id>', views.result, name='result'),
     path('createLuggage', views.createLuggage, name='createLuggage'),
     path('FAQ', views.faq, name='FAQ'), #FAQ() function called with user signin take back to home page
+    path('contact', views.contact, name='contact'), #FAQ() function called with user signin take back to home page
     path('movetoadd', views.autocomplete, name='autocomplete'),
     path('addfailed', views.addfailed, name='addfailed')
 ]
