@@ -61,6 +61,8 @@ class TestViews(TestCase):
         #self.assertEquals(response.status_code, 200)
         #self.assertTemplateUsed(response, 'FAQ.html')  
 
+    #Need Test for response to client for contact.html 
+
     def test_movetoadd_page(self):
         response = self.client.get(self.movetoadd_url)
 

@@ -2,6 +2,8 @@ from django.shortcuts import redirect, render
 from .models import *  # importing luggage data class
 from django.http import JsonResponse
 from .blockchain.blockchain import *
+from django.contrib.auth.models import User, auth 
+from django.contrib import messages #for showing messages either errors or others on html page 
 
 bc = Blockchain()
 
@@ -140,8 +142,26 @@ def movetologin(request):
 
 # user signin
 def login(request):
-    # code to process sign in
+
+    if request.method == 'POST':
+        username = request.POST['Username']
+        password = request.POST['psw']
+
+        user = auth.authenticate(username=username, password=password) #checking authentication
+
+        if user is not None:
+            auth.login(request, user)
+            return redirect('/') #home.html
+        else:
+            messages.error(request, 'Invalid UserName or Password')
+            return redirect('movetologin')
+        
     return render(request, 'home.html')
+
+# user logout 
+def logout(request):
+    auth.logout(request)
+    return redirect('/') #home.html 
 
 def faq(request):
     return render(request, 'FAQ.html')  # rendering the webpage home to client

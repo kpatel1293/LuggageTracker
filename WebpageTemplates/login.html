@@ -2,26 +2,35 @@
 {% load static %} <!--Need to load static files to access images for img-->
 
 {% block content %}
-<div style="margin-left:25%;padding:1px 16px;">
-<center><h1>Login</h1></center>
+<div class="container" style="text-align:center;margin-top:10px">
+  <h1>Staff Login</h1>
 </div>
 
 <form action="login" method="POST">
     {% csrf_token %} <!--to be able to use POST instead of GET-->
 
-    <div class="imgcontainer" style="margin-left:25%;padding:1px 16px;">
+    <div style="text-align:center;margin-top:10px">
         <img class ="avatar" src="{% static 'images/Usericon.png' %}" /> 
     </div>
-  
-    <div class="container" style="margin-left:25%;padding:1px 16px;">
+
+    <div class="container" style="text-align:center;margin-top:10px">
       <b>Username : </b>
       <input type="text" placeholder="Enter Username" name="Username" required> <br>
-  
+
+      <br> 
+
       <b>Password : </b>
       <input type="password" placeholder="Enter Password" name="psw" required> <br>
-          
-      <button class = "button buttonSignIn" type="submit">Login</button>
+      <br>
+      <button class="btn btn-outline-success" type="submit">Sign in</button>
     </div>
-  </form>
+</form>
+
+<!--Error message if cannot sign in-->
+<div style="text-align:center;margin-top:10px">
+  {% for message in messages %}
+  <h3 style="color:red;">{{message}}</h3>
+  {% endfor %}
+</div>
 
 {% endblock %}
