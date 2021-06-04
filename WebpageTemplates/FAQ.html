@@ -2,8 +2,75 @@
 {% load static %} <!--Need to load static files to access images for img-->
 
 {% block content %}
-  <center><h1>FAQ</h1></center>
+<center xmlns="http://www.w3.org/1999/html"><h1>FAQ</h1></center>
+<div class="container py-3">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <div class="accordion" id="faqExample">
+        <div class="card">
+          <div class="card-header p-2" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Q: How does Luggage Tracker work?
+              </button>
+            </h5>
+          </div>
 
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#faqExample">
+            <div class="card-body">
+              <b>Answer:</b> Luggage Tracker uses a blockchain to securely create a unique ID for each bag.
+              Each piece of luggage with a unique ID can then be tracked across all transit airports.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header p-2" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Q: Why can't I find my luggage ID?
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#faqExample">
+            <div class="card-body">
+              <b>Answer:</b> Make sure you are logged in to the app.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header p-2" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Q. Can I track more than one bag at a time?
+              </button>
+            </h5>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#faqExample">
+            <div class="card-body">
+              <b>Answer:</b> Once logged in to the application, you are able to track as many bags as necessary, each with their own unique ID.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header p-2" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Q. Still can't find what you're looking for?
+              </button>
+            </h5>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#faqExample">
+            <div class="card-body">
+              <b>Answer:</b> Please feel free to reach out to us with any other questions <a href="/contact" class="link-primary">here.</a>
+            </div>
+          </div>
+        </div>
+      </div>
 
+    </div>
+  </div>
+  <!--/row-->
+</div>
+<!--container-->
 
 {% endblock %}
