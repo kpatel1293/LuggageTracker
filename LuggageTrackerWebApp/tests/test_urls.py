@@ -2,7 +2,7 @@ from django.test import SimpleTestCase #testing path URLS without using the data
 from django.urls import reverse, resolve
 
 #importing the functions from views.py to test the path URLS 
-from LuggageTrackerWebApp.views import autocomplete, home, search, result, notfound, createLuggage, addLuggage, movetologin, login, faq
+from LuggageTrackerWebApp.views import autocomplete, home, search, result, notfound, createLuggage, movetologin, login, faq, addfailed
 
 #class to test path URLS to calling the right functions in views.py
 class TestUrls(SimpleTestCase):
@@ -21,12 +21,6 @@ class TestUrls(SimpleTestCase):
         url = reverse('notfound')
         print(resolve(url)) 
         self.assertEquals(resolve(url).func, notfound) 
-
-    #This url path causes failed test needs fix
-    def test_addLuggage_url(self):
-        url = reverse('addLuggage', args=[1]) #just put some tagID arugment to pass 
-        print(resolve(url)) 
-        self.assertEquals(resolve(url).func, addLuggage) 
     
     def test_movetologin_url(self):
         url = reverse('movetologin')
@@ -38,7 +32,6 @@ class TestUrls(SimpleTestCase):
         print(resolve(url)) 
         self.assertEquals(resolve(url).func, login) 
     
-    #This url path causes failed test needs fix
     def test_result_url(self):
         url = reverse('result', args=[1]) #just put some tagID arugment to pass 
         print(resolve(url)) 
@@ -58,4 +51,9 @@ class TestUrls(SimpleTestCase):
         url = reverse('autocomplete')
         print(resolve(url)) 
         self.assertEquals(resolve(url).func, autocomplete) 
+    
+    def test_addfailed_url(self):
+        url = reverse('addfailed')
+        print(resolve(url)) 
+        self.assertEquals(resolve(url).func, addfailed) 
 
