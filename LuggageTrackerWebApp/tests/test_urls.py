@@ -2,7 +2,7 @@ from django.test import SimpleTestCase #testing path URLS without using the data
 from django.urls import reverse, resolve
 
 #importing the functions from views.py to test the path URLS 
-from LuggageTrackerWebApp.views import autocomplete, home, search, result, notfound, createLuggage, movetologin, login, faq, addfailed
+from LuggageTrackerWebApp.views import autocomplete, home, search, result, notfound, createLuggage, movetologin, login, faq, addfailed, contact, logout
 
 #class to test path URLS to calling the right functions in views.py
 class TestUrls(SimpleTestCase):
@@ -56,4 +56,14 @@ class TestUrls(SimpleTestCase):
         url = reverse('addfailed')
         print(resolve(url)) 
         self.assertEquals(resolve(url).func, addfailed) 
+
+    def test_contact_url(self):
+        url = reverse('contact')
+        print(resolve(url)) 
+        self.assertEquals(resolve(url).func, contact)
+
+    def test_logout_url(self):
+        url = reverse('logout')
+        print(resolve(url)) 
+        self.assertEquals(resolve(url).func, logout)
 

@@ -99,8 +99,9 @@ class Test_Airport(TestCase):
     @classmethod
     def setUpTestData(cls):
         Airport.objects.create(
-            name = 'Chicago O Hare International Airport (ORD)',
+            name = 'Chicago O Hare International Airport',
             municipality = 'general',
+            airport_name = 'Chicago O Hare International',
             iatacode = 'ORD'
         )
     
@@ -118,4 +119,9 @@ class Test_Airport(TestCase):
         testObject = Airport.objects.get()
         iatacode_label = testObject._meta.get_field('iatacode').verbose_name
         self.assertEquals(iatacode_label, 'IATA Code')
+    
+    def test_airport(self):
+        testObject = Airport.objects.get(pk=1)
+        airport_label = testObject._meta.get_field('airport_name').verbose_name
+        self.assertEquals(airport_label, 'airport name')
     

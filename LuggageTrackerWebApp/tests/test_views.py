@@ -17,6 +17,9 @@ class TestViews(TestCase):
         self.faq_url = reverse('FAQ')
         self.movetoadd_url = reverse('autocomplete')
         self.addfailed_url = reverse('addfailed')
+        self.contact_url = reverse('contact')
+        self.login_url = reverse('login')
+        self.logout_url = reverse('logout')
 
     def test_home_page(self):
         response = self.client.get(self.home_url)
@@ -53,15 +56,12 @@ class TestViews(TestCase):
         response = self.client.get(self.createluggage_url)
 
         self.assertEquals(response.status_code, 302)
+ 
+    def test_faq_page(self):
+        response = self.client.get(self.faq_url)
 
-    #needs to add FAQ.html to pass 
-    #def test_faq_page(self):
-        #response = self.client.get(self.faq_url)
-
-        #self.assertEquals(response.status_code, 200)
-        #self.assertTemplateUsed(response, 'FAQ.html')  
-
-    #Need Test for response to client for contact.html 
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'FAQ.html')  
 
     def test_movetoadd_page(self):
         response = self.client.get(self.movetoadd_url)
@@ -74,3 +74,20 @@ class TestViews(TestCase):
 
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'failedpush.html')  
+
+    def test_contact_page(self):
+        response = self.client.get(self.contact_url)
+
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'contact.html')  
+
+    def test_login(self):
+        response = self.client.get(self.login_url)
+
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'home.html')  
+
+    def test_logout(self):
+        response = self.client.get(self.logout_url)
+
+        self.assertEquals(response.status_code, 302)
