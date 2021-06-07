@@ -11,9 +11,9 @@ from django.utils import timezone
 #Object Data class
 
 class LuggageManager(models.Manager):
-    # validate registeration
+    # validate registration
     def validateLuggage(self,form_data):
-        # store user input new luggge to database 
+        # store user input new luggage to database
         addLuggage = self.create(
             description=form_data['description'],
             origin_airport=form_data['origin_airport'],
@@ -29,7 +29,7 @@ class Luggage(models.Model):
         ('Checked In', 'Checked In'),
         ('In Transit', 'In Transit'),
         ('Arrived At Destination', 'Arrived At Destination'),
-        ('Retrived', 'Retrived')
+        ('Retrieved', 'Retrieved')
     )
 
     tag_id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
@@ -39,14 +39,14 @@ class Luggage(models.Model):
     # transit_airport = models.CharField(max_length=150)
     destination_airport = models.CharField(max_length=150)
 
-    #new added variables accoridng to blockchain class 
+    #new added variables according to blockchain class
     status = models.CharField(max_length=30, choices=STATUS, default='Checked In') #luggage transit status can be either 'Arrived' or 'In Transit'
 
     FLAG = (('N', 'N'), ('Y', 'Y'))
     flagged = models.CharField(max_length=1, choices=FLAG, default='N') #can be either 'N' or 'Y'
 
-    SIGNTURE = (('Awaiting Signture', 'Awaiting Signture'),('Missing', 'Missing'),('Delayed', 'Delayed'),('Approved', 'Approved'), ('Disapproved', 'Disapproved')) 
-    digital_signature = models.CharField(max_length=50, choices=SIGNTURE, default='Awaiting Signture') #can be either 'approved' or 'disapproved' or 'waiting'
+    SIGNATURE = (('Awaiting Signature', 'Awaiting Signature'),('Missing', 'Missing'),('Delayed', 'Delayed'),('Approved', 'Approved'), ('Disapproved', 'Disapproved'))
+    digital_signature = models.CharField(max_length=50, choices=SIGNATURE, default='Awaiting Signature') #can be either 'approved' or 'disapproved' or 'waiting'
 
     # call luggage manager
     objects = LuggageManager()
@@ -56,9 +56,9 @@ class Luggage(models.Model):
         return str(self.tag_id)
 
 class BlockchainManager(models.Manager):
-    # validate registeration
+    # validate registration
     def validateBlockchain(self,blockchain, luggage):
-        # store user input new luggge to database 
+        # store user input new luggage to database
         addBlock = self.create(
             index=blockchain['index'],
             transactions=luggage,
@@ -93,7 +93,8 @@ class Airport(models.Model):
     name = models.TextField(blank=True)
     municipality = models.CharField(max_length=150)
     iatacode = models.CharField('IATA Code', max_length=10)
+    airport_name = models.CharField(max_length=150)
     objects = models.Manager()
 
     def __str__(self):
-       return str(self.name)
+       return str(self.airport_name)

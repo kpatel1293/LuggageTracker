@@ -15,7 +15,12 @@
     <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-          
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
     <title>Luggage Tracker</title>
     <!--width change size of image, border-radius make edges round, margins to center image-->
 
@@ -150,6 +155,7 @@ border-color: #1FADF9;
   background-color: #1FADF9;
   border-color: #1FADF9;
 }
+
     </style>
     <link href="sticky-footer-navbar.css" rel="stylesheet">
 
@@ -204,7 +210,7 @@ border-color: #1FADF9;
       <form class="d-flex" style="margin-left:15%;margin-right:15%;margin-bottom:25px" action="/search" method='POST'>
         {% csrf_token %} <!--to be able to use POST instead of GET-->
           <input class="form-control me-2" type="text" name="tag_id" placeholder="Enter Luggage Tag ID" aria-label="Search">
-          <input class="btn btn-outline-success" type="submit" </input>
+          <input class="btn btn-outline-success" type="submit">
       </form>
 
       <!--block used for display content for other html pages that extends this html-->
