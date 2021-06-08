@@ -79,8 +79,8 @@ class Test_Luggage(TestCase):
 
         #Blocks.objects.create(
             #index = 1,
-            #transactions = 1,
-            #timestamp = Luggage.objects.get(pk= 1),
+            #transactions = Luggage.objects.get(pk= 1),
+            #timestamp = 234235312,
             #prevHash = '12ewkfngwejgwekg9239',
             #nonce = 50,
             #hash_curr = '932ufnjwe93908u138u501'
