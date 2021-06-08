@@ -93,7 +93,7 @@ class Airport(models.Model):
     name = models.TextField(blank=True)
     municipality = models.CharField(max_length=150)
     iatacode = models.CharField('IATA Code', max_length=10)
-    airport_name = models.CharField(max_length=150)
+    airport_name = models.CharField(max_length=150, default='n/a')
     objects = models.Manager()
 
     def __str__(self):
