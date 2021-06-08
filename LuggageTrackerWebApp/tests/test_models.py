@@ -1,7 +1,7 @@
 from django.db.models.base import Model
 from django.test import TestCase
 from LuggageTrackerWebApp.models import Luggage, LuggageManager, Blocks, BlockchainManager, Airport
-import datetime
+from django.utils import timezone
 from django.test.utils import freeze_time #for testing datetime to stop the datetime for the test
 
 
@@ -17,7 +17,7 @@ class Test_Luggage(TestCase):
         Luggage.objects.create(
             #tag_id is auto created
             description = 'Samsonite Red ASTELL',
-            time_stamp = datetime.datetime.now(),
+            time_stamp = timezone.now(),
             origin_airport = 'Chicago O Hare International Airport (ORD)',
             destination_airport = 'Seattle-Tacoma International Airport (SEA)',
             #status = 'Checked In',         #using default instead 
@@ -66,30 +66,28 @@ class Test_Luggage(TestCase):
 
     #@classmethod
     #def setUpTestData(cls):
-        #test_Luggage = Luggage.objects.create(
+        #Luggage.objects.create(
             #tag_id is auto created
-            #description = 'Samsonite Red ASTELL',
-            #time_stamp = datetime.datetime.now(),
+            #description = 'American Tourister',
+            #time_stamp = timezone.now(),
             #origin_airport = 'Chicago O Hare International Airport (ORD)',
-            #destination_airport = 'Seattle-Tacoma International Airport (SEA)'
+            #destination_airport = 'Los Angeles International Airport (LAX)',
             #status = 'Checked In',         #using default instead 
             #flagged = 'N',         #using default instead 
             #digital_signature = 'Awaiting Signture'    #using default instead 
         #)
 
-        #testObject = Luggage.objects.get(tag_id=1)
-
         #Blocks.objects.create(
             #index = 1,
-            #transactions = Blocks(test_Luggage),
-            #timestamp = 1252362.241,
+            #transactions = Luggage.objects.get(pk= 1),
+            #timestamp = 234235312,
             #prevHash = '12ewkfngwejgwekg9239',
             #nonce = 50,
             #hash_curr = '932ufnjwe93908u138u501'
         #)
 
     #def test_blocks_index(self):
-        #testObject = Blocks.objects.get(index = 1)
+        #testObject = Blocks.objects.get(pk = 1)
         #index_label = testObject._meta.get_field('index').verbose_name
         #self.assertEquals(index_label, 'index')
 
@@ -99,8 +97,9 @@ class Test_Airport(TestCase):
     @classmethod
     def setUpTestData(cls):
         Airport.objects.create(
-            name = 'Chicago O Hare International Airport (ORD)',
+            name = 'Chicago O Hare International Airport',
             municipality = 'general',
+            airport_name = 'Chicago O Hare International',
             iatacode = 'ORD'
         )
     
@@ -118,4 +117,9 @@ class Test_Airport(TestCase):
         testObject = Airport.objects.get()
         iatacode_label = testObject._meta.get_field('iatacode').verbose_name
         self.assertEquals(iatacode_label, 'IATA Code')
+    
+    def test_airport(self):
+        testObject = Airport.objects.get(pk=1)
+        airport_label = testObject._meta.get_field('airport_name').verbose_name
+        self.assertEquals(airport_label, 'airport name')
     
