@@ -24,10 +24,9 @@ class TestViews(TestCase):
     def test_home_page(self):
         response = self.client.get(self.home_url)
 
-        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.status_code, 200) #testing to see if the client gets correct return response 
         self.assertTemplateUsed(response, 'home.html') #testing to see if the client gets the template home.html 
     
-    #needs more testing for redirects 
     def test_search_page(self):
         response = self.client.get(self.search_url)
 
@@ -45,13 +44,11 @@ class TestViews(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'login.html')   
 
-    #needs more testing for redirects 
     def test_result_page(self):
         response = self.client.get(self.result_url)
 
         self.assertEquals(response.status_code, 302)
 
-    #needs more testing for redirects 
     def test_createluggage_page(self):
         response = self.client.get(self.createluggage_url)
 
