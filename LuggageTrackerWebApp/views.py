@@ -169,6 +169,9 @@ def faq(request):
 def contact(request):
     return render(request, 'contact.html')
 
+def contactRequest(request):
+    return render(request, 'contactconfirm.html')
+
 def autocomplete(request):
     if 'term' in request.GET:
         qs = Airport.objects.filter(name__icontains=request.GET.get('term'))

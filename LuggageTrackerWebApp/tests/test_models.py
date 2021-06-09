@@ -62,29 +62,29 @@ class Test_Luggage(TestCase):
         self.assertEquals(DigitalSig_label, 'digital signature')
 
 #Problems with testing blocks 
-#class TestBlocks(TestCase):
+class TestBlocks(TestCase):
 
-    #@classmethod
-    #def setUpTestData(cls):
-        #Luggage.objects.create(
+    @classmethod
+    def setUpTestData(cls):
+        Luggage.objects.create(
             #tag_id is auto created
-            #description = 'American Tourister',
-            #time_stamp = timezone.now(),
-            #origin_airport = 'Chicago O Hare International Airport (ORD)',
-            #destination_airport = 'Los Angeles International Airport (LAX)',
+            description = 'American Tourister',
+            time_stamp = timezone.now(),
+            origin_airport = 'Chicago O Hare International Airport (ORD)',
+            destination_airport = 'Los Angeles International Airport (LAX)',
             #status = 'Checked In',         #using default instead 
             #flagged = 'N',         #using default instead 
             #digital_signature = 'Awaiting Signture'    #using default instead 
-        #)
+        )
 
-        #Blocks.objects.create(
-            #index = 1,
-            #transactions = Luggage.objects.get(pk= 1),
-            #timestamp = 234235312,
-            #prevHash = '12ewkfngwejgwekg9239',
-            #nonce = 50,
-            #hash_curr = '932ufnjwe93908u138u501'
-        #)
+        Blocks.objects.create(
+            index = 1,
+            transactions = Luggage.objects.get(pk= 1),
+            timestamp = 234235312,
+            prevHash = '12ewkfngwejgwekg9239',
+            nonce = 50,
+            hash_curr = '932ufnjwe93908u138u501'
+        )
 
     #def test_blocks_index(self):
         #testObject = Blocks.objects.get(pk = 1)
